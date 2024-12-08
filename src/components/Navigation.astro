@@ -1,0 +1,44 @@
+---
+const categories = [
+  { name: 'All Furniture', href: '/furniture' },
+  { name: 'Luxury Beds', href: '/category/beds' },
+  { name: 'Designer Drawers', href: '/category/drawers' },
+  { name: 'Modern Sets', href: '/category/sets' },
+  { name: 'Kids Collection', href: '/category/kids' },
+  { name: 'Best Sellers', href: '/best-sellers' },
+  { name: 'New Arrivals', href: '/new-arrivals' },
+  { name: 'Sale', href: '/sale' }
+];
+---
+
+<nav class="bg-white border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="flex-shrink-0 flex items-center">
+          <a href="/" class="text-2xl font-bold text-gray-900">
+            LuxuryBeds
+          </a>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          {categories.map((category) => (
+            <a
+              href={category.href}
+              class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 hover:border-gray-300"
+            >
+              {category.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="flex items-center">
+        <a
+          href="/account"
+          class="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
+        >
+          Sign In
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

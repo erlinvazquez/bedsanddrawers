@@ -1,0 +1,38 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Footer from '../components/Footer.astro';
+import { products } from '../data/products';
+
+const title = "Luxury Furniture Hub - Premium Beds & Drawers";
+const description = "Discover our curated collection of luxury beds and designer drawers. Find the perfect furniture pieces for your dream home.";
+
+const featuredProducts = products.slice(0, 3);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <link rel="canonical" href={Astro.site} />
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <Navigation />
+    <Hero />
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section>
+        <h2 class="text-3xl font-bold text-gray-900 mb-8">Featured Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredProducts.map((product) => (
+            <ProductCard {...product} />
+          ))}
+        </div>
+      </section>
+    </main>
+    
+    <Footer />
+  </body>
+</html>

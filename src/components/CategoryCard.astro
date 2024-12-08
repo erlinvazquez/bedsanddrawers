@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  href: string;
+}
+
+const { title, image, href } = Astro.props;
+---
+
+<a href={href} class="group relative h-64 rounded-lg overflow-hidden">
+  <img
+    src={image}
+    alt={`${title} Collection`}
+    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+  <span class="absolute bottom-4 left-4 text-white text-2xl font-semibold">{title}</span>
+</a>
