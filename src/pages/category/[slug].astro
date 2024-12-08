@@ -1,0 +1,79 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Navigation from '../../components/Navigation.astro';
+import CategoryHero from '../../components/CategoryHero.astro';
+import SubcategoryGrid from '../../components/SubcategoryGrid.astro';
+import Footer from '../../components/Footer.astro';
+import { categories } from '../../data/categories';
+import { COMPANY_NAME } from '../../consts';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead 
+      title={category.metaTitle} 
+      description={category.metaDescription}
+    />
+    <link rel="canonical" href={`${Astro.site}category/${category.slug}`} />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "${category.name}",
+        "description": "${category.description}",
+        "provider": {
+          "@type": "Organization",
+          "name": "${COMPANY_NAME}"
+        },
+        "numberOfItems": ${category.subcategories.reduce((acc, sub) => acc + sub.count, 0)}
+      }
+    </script>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <Navigation />
+    
+    <CategoryHero
+      title={category.name}
+      description={category.description}
+      image={category.image}
+    />
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section>
+        <h2 class="text-3xl font-bold text-gray-900 mb-8">Browse {category.name}</h2>
+        <SubcategoryGrid subcategories={category.subcategories} />
+      </section>
+      
+      <section class="mt-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8">Shopping Guide</h2>
+        <div class="prose prose-purple max-w-none">
+          <p class="text-lg text-gray-600">
+            Discover our comprehensive collection of {category.name.toLowerCase()}. Whether you're looking for 
+            {category.subcategories.map((sub, i) => 
+              i === category.subcategories.length - 1 
+                ? ` or ${sub.name.toLowerCase()}`
+                : `, ${sub.name.toLowerCase()}`
+            )}, 
+            we have the perfect solution for your needs.
+          </p>
+          <p class="text-lg text-gray-600 mt-4">
+            Each piece is carefully selected for quality, style, and durability. Our expert team is here 
+            to help you find the perfect match for your home.
+          </p>
+        </div>
+      </section>
+    </main>
+    
+    <Footer />
+  </body>
+</html>

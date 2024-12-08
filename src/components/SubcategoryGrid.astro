@@ -1,0 +1,28 @@
+---
+import type { Subcategory } from '../data/categories';
+
+interface Props {
+  subcategories: Subcategory[];
+}
+
+const { subcategories } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {subcategories.map((subcategory) => (
+    <a href={`/category/${subcategory.slug}`} class="group">
+      <div class="relative aspect-w-3 aspect-h-2 rounded-lg overflow-hidden bg-gray-100">
+        <img
+          src={subcategory.image}
+          alt={subcategory.name}
+          class="object-cover object-center group-hover:opacity-75 transition-opacity"
+        />
+      </div>
+      <div class="mt-4">
+        <h3 class="text-lg font-medium text-gray-900">{subcategory.name}</h3>
+        <p class="mt-1 text-sm text-gray-500">{subcategory.description}</p>
+        <p class="mt-1 text-sm font-medium text-purple-600">{subcategory.count} items</p>
+      </div>
+    </a>
+  ))}
+</div>
