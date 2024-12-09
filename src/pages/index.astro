@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
+import ShoppingGuide from '../components/home/ShoppingGuide.astro';
 import ProductCard from '../components/ProductCard.astro';
 import ProductComparison from '../components/ProductComparison.astro';
 import CategoryWidget from '../components/CategoryWidget.astro';
@@ -63,6 +64,8 @@ const featuredProducts = products.slice(0, 4);
         </div>
       </div>
     </main>
+
+    <ShoppingGuide />
     
     <Footer />
   </body>

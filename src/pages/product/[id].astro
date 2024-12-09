@@ -2,9 +2,11 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
+import ShoppingGuide from '../../components/shopping-guide/ShoppingGuide.astro';
 import { products } from '../../data/products';
 import { COMPANY_NAME } from '../../consts';
 import { formatPrice } from '../../utils/price';
+import { getShoppingGuide } from '../../data/shopping-guides';
 
 export function getStaticPaths() {
   return products.map(product => ({
@@ -14,6 +16,7 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const shoppingGuide = getShoppingGuide(product.category);
 ---
 
 <!DOCTYPE html>
@@ -111,10 +114,10 @@ const { product } = Astro.props;
               <ul class="mt-4 space-y-2">
                 {product.features.map(feature => (
                   <li class="flex items-center">
-                    <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span class="ml-2">{feature}</span>
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -146,6 +149,8 @@ const { product } = Astro.props;
           </div>
         </div>
       </div>
+
+      <ShoppingGuide {...shoppingGuide} />
     </main>
     
     <Footer />
