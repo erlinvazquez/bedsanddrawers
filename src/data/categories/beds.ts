@@ -1,40 +1,78 @@
-import type { Category } from './index';
+import type { Category } from './types';
 
 export const bedsCategory: Category = {
   id: 'beds',
   name: 'Beds',
   slug: 'beds',
   description: 'Discover our complete range of beds for every need and style',
+  metaTitle: 'Premium Beds Collection | Functional, Stylish & Space-Saving Options',
+  metaDescription: 'Explore our extensive collection of high-quality beds. From storage beds to luxury designs, find the perfect bed for your space.',
   image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
   subcategories: [
     {
-      id: 'baby-beds',
-      name: 'Baby Beds',
-      slug: 'baby-beds',
-      description: 'Safe and comfortable beds for your little ones',
-      count: 15,
-      image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af',
-      products: [
-        { id: 'convertible-cribs', name: 'Convertible Cribs', description: 'Versatile cribs that grow with your baby', price: 299, image: '', features: [] },
-        { id: 'mini-cribs', name: 'Mini Cribs', description: 'Space-saving cribs for smaller nurseries', price: 199, image: '', features: [] },
-        { id: 'bassinets', name: 'Bassinets', description: 'Cozy sleeping solutions for newborns', price: 149, image: '', features: [] },
-        { id: 'portable-baby-beds', name: 'Portable Baby Beds', description: 'Travel-friendly beds for babies', price: 179, image: '', features: [] }
+      id: 'functional-beds',
+      name: 'Functional Beds',
+      slug: 'functional-beds',
+      description: 'Practical bed solutions for modern living',
+      count: 48,
+      image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
+      items: [
+        { name: 'Beds with Drawers', slug: 'beds-with-drawers' },
+        { name: 'Storage Beds', slug: 'storage-beds' },
+        { name: 'Platform Beds', slug: 'platform-beds' },
+        { name: 'Adjustable Beds', slug: 'adjustable-beds' },
+        { name: 'Foldable Beds', slug: 'foldable-beds' },
+        { name: 'Sofa Beds', slug: 'sofa-beds' },
+        { name: 'Murphy Beds', slug: 'murphy-beds' },
+        { name: 'Daybeds', slug: 'daybeds' }
       ]
     },
     {
-      id: 'kids-beds',
-      name: 'Kids\' Beds',
-      slug: 'kids-beds',
-      description: 'Fun and functional beds for growing children',
-      count: 20,
-      image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
-      products: [
-        { id: 'toddler-beds', name: 'Toddler Beds', description: 'Safe transition beds for toddlers', price: 249, image: '', features: [] },
-        { id: 'bunk-beds', name: 'Bunk Beds', description: 'Space-efficient sleeping solutions', price: 499, image: '', features: [] },
-        { id: 'loft-beds', name: 'Loft Beds', description: 'Elevated beds with space underneath', price: 399, image: '', features: [] },
-        { id: 'storage-beds', name: 'Beds with Storage', description: 'Practical beds with built-in storage', price: 449, image: '', features: [] }
+      id: 'audience-beds',
+      name: 'Beds by Age Group',
+      slug: 'audience-beds',
+      description: 'Age-appropriate beds for every stage of life',
+      count: 35,
+      image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af',
+      items: [
+        { name: 'Beds for Girls', slug: 'girls-beds' },
+        { name: 'Beds for Boys', slug: 'boys-beds' },
+        { name: 'Cribs', slug: 'baby-cribs' },
+        { name: 'Toddler Beds', slug: 'toddler-beds' },
+        { name: 'Teen Beds', slug: 'teenage-beds' },
+        { name: 'Adult Beds', slug: 'adult-beds' },
+        { name: 'Senior-Friendly Beds', slug: 'senior-beds' }
       ]
     },
-    // Additional subcategories...
+    {
+      id: 'design-beds',
+      name: 'Design & Style',
+      slug: 'design-beds',
+      description: 'Beds that make a style statement',
+      count: 30,
+      image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c',
+      items: [
+        { name: 'Modern Beds', slug: 'modern-beds' },
+        { name: 'Rustic Beds', slug: 'rustic-beds' },
+        { name: 'Canopy Beds', slug: 'canopy-beds' },
+        { name: 'Poster Beds', slug: 'poster-beds' },
+        { name: 'Minimalist Beds', slug: 'minimalist-beds' },
+        { name: 'Luxury Beds', slug: 'luxury-beds' }
+      ]
+    },
+    {
+      id: 'space-saving-beds',
+      name: 'Space-Saving Solutions',
+      slug: 'space-saving-beds',
+      description: 'Smart bed solutions for any space',
+      count: 20,
+      image: 'https://images.unsplash.com/photo-1505693414898-9f1463e9f7a4',
+      items: [
+        { name: 'Bunk Beds', slug: 'bunk-beds' },
+        { name: 'Loft Beds', slug: 'loft-beds' },
+        { name: 'Trundle Beds', slug: 'trundle-beds' },
+        { name: 'Compact Beds', slug: 'compact-beds' }
+      ]
+    }
   ]
 };

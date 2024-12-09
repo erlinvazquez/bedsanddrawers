@@ -1,0 +1,41 @@
+---
+import FactorsToConsider from './FactorsToConsider.astro';
+import PopularBrands from './PopularBrands.astro';
+import PriceRangeFilter from './PriceRangeFilter.astro';
+import QuestionsAnswers from './QuestionsAnswers.astro';
+
+interface Props {
+  category: string;
+  factors: Array<{ name: string; description: string; }>;
+  brands: Array<{
+    name: string;
+    logo: string;
+    description: string;
+    rating: number;
+    reviewCount: number;
+    knownFor: string[];
+  }>;
+  priceRanges: Array<{
+    label: string;
+    min: number;
+    max?: number;
+  }>;
+  questions: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+const { category, factors, brands, priceRanges, questions } = Astro.props;
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+  <div class="lg:col-span-2">
+    <FactorsToConsider factors={factors} />
+    <PopularBrands brands={brands} />
+  </div>
+  <div>
+    <PriceRangeFilter ranges={priceRanges} />
+    <QuestionsAnswers questions={questions} />
+  </div>
+</div>

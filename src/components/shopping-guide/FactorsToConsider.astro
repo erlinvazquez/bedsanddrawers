@@ -1,0 +1,45 @@
+---
+interface Factor {
+  name: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  factors: Factor[];
+  title?: string;
+}
+
+const { factors, title = "Factors to consider" } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-sm p-8">
+  <h3 class="text-xl font-semibold text-gray-900 mb-6">{title}</h3>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {factors.map((factor) => (
+      <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
+        <div class="flex-shrink-0">
+          <svg 
+            class="h-6 w-6 text-purple-600" 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d={factor.icon}
+            />
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-lg font-medium text-gray-900">{factor.name}</h4>
+          <p class="mt-1 text-sm text-gray-600">{factor.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

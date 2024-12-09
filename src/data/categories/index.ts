@@ -1,33 +1,15 @@
-export * from './beds';
-export * from './drawers';
-export * from './furniture-by-room';
-export * from './styles-materials';
-export * from './buying-guides';
+import { bedsCategory } from './beds';
+import { drawersCategory } from './drawers';
+import { setsCategory } from './sets';
+export * from './types';
 
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  image: string;
-  subcategories: Subcategory[];
+export const categories = [bedsCategory, drawersCategory, setsCategory];
+
+export function getCategoryBySlug(slug: string): Category | undefined {
+  return categories.find(category => category.slug === slug);
 }
 
-export interface Subcategory {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  count: number;
-  image: string;
-  products?: Product[];
-}
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  features: string[];
+export function getSubcategoryBySlug(categorySlug: string, subcategorySlug: string): Subcategory | undefined {
+  const category = getCategoryBySlug(categorySlug);
+  return category?.subcategories.find(subcategory => subcategory.slug === subcategorySlug);
 }

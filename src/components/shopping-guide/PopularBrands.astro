@@ -1,0 +1,59 @@
+---
+interface Brand {
+  name: string;
+  logo: string;
+  description: string;
+  rating: number;
+  reviewCount: number;
+  knownFor: string[];
+}
+
+interface Props {
+  brands: Brand[];
+}
+
+const { brands } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-semibold text-gray-900">Popular brands</h2>
+    <button class="text-sm text-gray-600 hover:text-gray-900">
+      See all
+      <span class="sr-only">brands</span>
+    </button>
+  </div>
+  
+  <div class="flex overflow-x-auto gap-4 pb-2">
+    {brands.map((brand) => (
+      <div class="flex-none">
+        <img
+          src={brand.logo}
+          alt={brand.name}
+          class="w-16 h-16 rounded-full border border-gray-200"
+        />
+      </div>
+    ))}
+  </div>
+
+  {brands.map((brand) => (
+    <div class="mt-6">
+      <h3 class="font-medium text-gray-900">{brand.name}</h3>
+      <p class="text-sm text-gray-600 mt-1">{brand.description}</p>
+      
+      <div class="mt-4">
+        <h4 class="text-sm font-medium text-gray-900">Known for:</h4>
+        <ul class="mt-2 text-sm text-gray-600">
+          {brand.knownFor.map((feature) => (
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  ))}
+</div>
