@@ -13,3 +13,5 @@ export function getSubcategoryBySlug(categorySlug: string, subcategorySlug: stri
   const category = getCategoryBySlug(categorySlug);
   return category?.subcategories.find(subcategory => subcategory.slug === subcategorySlug);
 }
+
+export type { Category, Subcategory } from './types';
