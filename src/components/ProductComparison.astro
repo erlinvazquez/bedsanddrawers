@@ -20,11 +20,12 @@ interface Props {
 const { title, items } = Astro.props;
 ---
 
-<section class="py-12 bg-white">
+<section class="py-12 bg-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-bold text-gray-900 mb-8">{title}</h2>
     
-    <div class="overflow-x-auto">
+    <!-- Desktop View -->
+    <div class="hidden md:block overflow-x-auto">
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr>
@@ -51,12 +52,8 @@ const { title, items } = Astro.props;
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                  <div class="flex">
-                    <StarRating rating={item.rating} />
-                  </div>
-                  <span class="ml-2 text-sm text-gray-500">{item.rating}</span>
-                </div>
+                <StarRating rating={item.rating} />
+                <span class="ml-2 text-sm text-gray-500">{item.rating}</span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {item.firmness}
@@ -90,5 +87,95 @@ const { title, items } = Astro.props;
         </tbody>
       </table>
     </div>
+
+    <!-- Mobile View (Carousel) -->
+    <div class="md:hidden">
+      <div class="swiper product-comparison-swiper">
+        <div class="swiper-wrapper">
+          {items.map((item) => (
+            <div class="swiper-slide">
+              <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="aspect-w-1 aspect-h-1 mb-4">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    class="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
+                <h3 class="text-lg font-semibold mb-2">{item.name}</h3>
+                <div class="space-y-2">
+                  <div class="flex items-center">
+                    <StarRating rating={item.rating} />
+                    <span class="ml-2 text-sm text-gray-500">{item.rating}</span>
+                  </div>
+                  <p class="text-sm text-gray-600">
+                    <span class="font-medium">Firmness:</span> {item.firmness}
+                  </p>
+                  <p class="text-sm text-gray-600">
+                    <span class="font-medium">Material:</span> {item.material}
+                  </p>
+                  <div class="flex items-center text-sm text-gray-600">
+                    <span class="font-medium">Cooling:</span>
+                    <span class="ml-2">
+                      {item.cooling ? (
+                        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : (
+                        <span>—</span>
+                      )}
+                    </span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <span class="font-medium">Best For:</span>
+                    <ul class="list-disc list-inside mt-1">
+                      {item.bestFor.map((use) => (
+                        <li>{use}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a
+                    href={item.link}
+                    class="mt-4 block w-full text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
+                  >
+                    Check Price
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  .swiper-slide {
+    height: auto;
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+
+  new Swiper('.product-comparison-swiper', {
+    modules: [Pagination],
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2.2,
+      }
+    }
+  });
+</script>

@@ -1,0 +1,31 @@
+---
+interface Props {
+  images: string[];
+  title: string;
+}
+
+const { images, title } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-4">
+  <div class="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden bg-gray-100">
+    <img
+      src={images[0]}
+      alt={title}
+      class="w-full h-full object-cover object-center"
+    />
+  </div>
+  {images.length > 1 && (
+    <div class="grid grid-cols-4 gap-4">
+      {images.slice(1).map((image, index) => (
+        <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden bg-gray-100">
+          <img
+            src={image}
+            alt={`${title} - View ${index + 2}`}
+            class="w-full h-full object-cover object-center cursor-pointer hover:opacity-75"
+          />
+        </div>
+      ))}
+    </div>
+  )}
+</div>

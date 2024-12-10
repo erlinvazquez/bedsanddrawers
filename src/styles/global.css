@@ -21,3 +21,12 @@
     @apply bg-white rounded-lg shadow-md overflow-hidden;
   }
 }
+
+/* Swiper Styles */
+.swiper-pagination-bullet {
+  @apply bg-purple-600;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-purple-800;
+}

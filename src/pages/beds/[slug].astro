@@ -1,0 +1,97 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Navigation from '../../components/Navigation.astro';
+import CategoryHero from '../../components/CategoryHero.astro';
+import SubcategoryGrid from '../../components/SubcategoryGrid.astro';
+import Footer from '../../components/Footer.astro';
+import { bedsCategory } from '../../data/categories/beds';
+import { COMPANY_NAME } from '../../consts';
+
+export function getStaticPaths() {
+  return bedsCategory.subcategories.map((subcategory) => ({
+    params: { slug: subcategory.slug },
+    props: { subcategory, category: bedsCategory },
+  }));
+}
+
+const { category, subcategory } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead 
+      title={`${subcategory.name} | ${COMPANY_NAME}`}
+      description={subcategory.description}
+    />
+    <link rel="canonical" href={`${Astro.site}beds/${subcategory.slug}`} />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "${subcategory.name}",
+        "description": "${subcategory.description}",
+        "provider": {
+          "@type": "Organization",
+          "name": "${COMPANY_NAME}"
+        },
+        "numberOfItems": ${subcategory.count}
+      }
+    </script>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <Navigation />
+    
+    <CategoryHero
+      title={subcategory.name}
+      description={subcategory.description}
+      image={subcategory.image}
+    />
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-3">
+          <section>
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Browse {subcategory.name}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {subcategory.items.map((item) => (
+                <a href={`/beds/${subcategory.slug}/${item.slug}`} class="group">
+                  <div class="relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden bg-gray-100">
+                    <img
+                      src={subcategory.image}
+                      alt={item.name}
+                      class="w-full h-full object-cover object-center group-hover:opacity-75"
+                    />
+                  </div>
+                  <h3 class="mt-4 text-lg font-medium text-gray-900">{item.name}</h3>
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <div class="lg:col-span-1">
+          <div class="sticky top-4">
+            <nav class="space-y-1" aria-label="Sidebar">
+              {category.subcategories.map((sub) => (
+                <a
+                  href={`/beds/${sub.slug}`}
+                  class={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+                    sub.slug === subcategory.slug
+                      ? 'bg-purple-100 text-purple-900'
+                      : 'text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  {sub.name}
+                  <span class="ml-auto">{sub.count}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <Footer />
+  </body>
+</html>
