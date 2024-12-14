@@ -1,0 +1,64 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl } from '../../../i18n/utils';
+import { guidesTranslations } from '../../../i18n/guides';
+import ShoppingGuide from '../../../components/shopping-guide/ShoppingGuide.astro';
+import { LOCALES } from '../../../consts';
+import { bedsGuide } from '../../../data/buying-guides';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const { pathname } = Astro.url;
+const currentLocale = getLocaleFromUrl(pathname);
+const t = guidesTranslations[currentLocale as keyof typeof guidesTranslations];
+---
+
+<Layout title={`${t.title} - B&D`} description={t.description} locale={currentLocale}>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+        {t.title}
+      </h1>
+      <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+        {t.description}
+      </p>
+    </div>
+
+    <div class="space-y-16">
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 mb-8">
+          {t.essentialGuides}
+        </h2>
+        <ShoppingGuide 
+          category="Beds"
+          factors={bedsGuide.factors}
+          brands={bedsGuide.brands}
+          priceRanges={bedsGuide.priceRanges}
+          questions={bedsGuide.questions}
+        />
+      </section>
+
+      <section class="bg-gray-50 rounded-2xl p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          {t.comingSoon}
+        </h2>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="p-6 bg-white rounded-xl shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900">{t.bedSizeGuide.title}</h3>
+            <p class="mt-2 text-gray-600">{t.bedSizeGuide.description}</p>
+          </div>
+          <div class="p-6 bg-white rounded-xl shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900">{t.drawerMaterialsGuide.title}</h3>
+            <p class="mt-2 text-gray-600">{t.drawerMaterialsGuide.description}</p>
+          </div>
+          <div class="p-6 bg-white rounded-xl shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900">{t.storageGuide.title}</h3>
+            <p class="mt-2 text-gray-600">{t.storageGuide.description}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

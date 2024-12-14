@@ -2,6 +2,7 @@
 import type { Category } from '../../data/categories';
 import { getLocaleFromUrl, useTranslations } from '../../i18n/utils';
 import type { Locale } from '../../consts';
+import { navigationLinks } from '../../utils/navigation';
 
 interface Props {
   categories: Category[];
@@ -11,6 +12,7 @@ const { categories } = Astro.props;
 const { pathname } = Astro.url;
 const currentLocale = getLocaleFromUrl(pathname);
 const t = useTranslations(currentLocale);
+const links = navigationLinks[currentLocale as keyof typeof navigationLinks];
 ---
 
 <div class="sm:hidden">
@@ -35,14 +37,16 @@ const t = useTranslations(currentLocale);
       >
         {t('nav.home')}
       </a>
-      {categories.map((category) => (
-        <a
-          href={`/${currentLocale}/${category.slug}`}
-          class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800"
-        >
-          {t(`nav.${category.id}`)}
-        </a>
-      ))}
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800"
+          >
+            {link.name}
+          </a>
+        ))
+      }
     </div>
   </div>
 </div>

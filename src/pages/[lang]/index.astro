@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import ShoppingGuide from '../../components/home/ShoppingGuide.astro';
 import ProductComparison from '../../components/ProductComparison.astro';
 import CategoryWidget from '../../components/CategoryWidget.astro';
+import TrendingProducts from '../../components/TrendingProducts.astro';
 import { categories } from '../../data/categories';
 import { mattressComparison } from '../../data/comparisons';
 import { LOCALES, type Locale } from '../../consts';
@@ -47,12 +48,12 @@ const featuredCategories = categories.slice(0, 3);
           </div>
         </section>
 
+        <TrendingProducts locale={currentLocale} />
+
         <ProductComparison 
           title={t('common.productComparison')}
           items={mattressComparison} 
         />
-
-        <ShoppingGuide />
       </div>
     </div>
   </main>

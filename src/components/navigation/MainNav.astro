@@ -5,11 +5,13 @@ import NavLink from './NavLink.astro';
 import Logo from '../Logo.astro';
 import LanguagePicker from '../LanguagePicker.astro';
 import { getLocaleFromUrl, useTranslations } from '../../i18n/utils';
+import { navigationLinks } from '../../utils/navigation';
 import type { Locale } from '../../consts';
 
 const { pathname } = Astro.url;
 const currentLocale = getLocaleFromUrl(pathname);
 const t = useTranslations(currentLocale);
+const links = navigationLinks[currentLocale as keyof typeof navigationLinks];
 ---
 
 <nav class="bg-white border-b border-gray-200">
@@ -24,14 +26,13 @@ const t = useTranslations(currentLocale);
         
         <!-- Desktop Navigation -->
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-          <NavLink href={`/${currentLocale}/`}>
-            {t('nav.home')}
-          </NavLink>
-          {categories.map((category) => (
-            <NavLink href={`/${currentLocale}/${category.slug}`}>
-              {t(`nav.${category.id}`)}
-            </NavLink>
-          ))}
+          {
+            links.map((link) => (
+              <NavLink href={link.href} isActive={pathname === link.href}>
+                {link.name}
+              </NavLink>
+            ))
+          }
         </div>
       </div>
 

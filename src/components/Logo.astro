@@ -13,19 +13,19 @@ const { className = "" } = Astro.props;
 
 <a 
   href={`/${currentLocale}/`} 
-  class={`inline-flex items-center ${className}`}
+  class={`inline-flex flex-col items-center ${className}`}
   aria-label={COMPANY_NAME}
 >
   <span class="text-3xl font-extrabold tracking-tighter">
-    <span class="text-primary-600">B</span>
+    <span class="text-purple-600">B</span>
     <span class="text-gray-400">&</span>
-    <span class="text-primary-600">D</span>
+    <span class="text-purple-600">D</span>
   </span>
-  <span class="ml-1 text-sm font-medium text-gray-600 tracking-wide">Furniture</span>
+  <span class="text-xs text-gray-400 -mt-1">beds & drawers</span>
 </a>
 
 <style>
-  .text-primary-600 {
-    color: #4F46E5; /* Indigo 600 - you can adjust this color */
+  .text-purple-600 {
+    color: #7c3aed;
   }
 </style>
