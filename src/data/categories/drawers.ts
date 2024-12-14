@@ -4,66 +4,94 @@ export const drawersCategory: Category = {
   id: 'drawers',
   name: 'Drawers',
   slug: 'drawers',
-  description: 'Explore our collection of designer drawers and storage solutions',
-  metaTitle: 'Premium Drawer Collection | Functional Storage Solutions',
-  metaDescription: 'Discover our range of high-quality drawers for every room. From bedroom dressers to specialized storage solutions.',
+  description: 'Explore our collection of designer drawers and storage solutions for every room',
+  metaTitle: 'Premium Drawer Collection | Storage Solutions for Every Room',
+  metaDescription: 'Discover our range of high-quality drawers and storage solutions. From chest of drawers to modular units, find the perfect storage for your space.',
   image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
   subcategories: [
     {
-      id: 'functional-drawers',
-      name: 'Functional Drawers',
-      slug: 'functional-drawers',
-      description: 'Purpose-built drawer solutions',
-      count: 25,
+      id: 'chest-of-drawers',
+      name: 'Chest of Drawers',
+      slug: 'chest-of-drawers',
+      description: 'Classic and modern chest of drawers for any room',
+      metaTitle: 'Chest of Drawers | Wooden, Metal & Modern Designs',
+      metaDescription: 'Find the perfect chest of drawers for your home. Choose from wooden, metal frame, and modern minimalist designs.',
       image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
       items: [
-        { name: 'Chest of Drawers', slug: 'chest-of-drawers' },
-        { name: 'Storage Drawers', slug: 'storage-drawers' },
-        { name: 'Clothes Drawers', slug: 'clothes-drawers' },
-        { name: 'Toy Drawers', slug: 'toy-drawers' },
-        { name: 'Bedside Drawers', slug: 'bedside-drawers' }
+        { name: 'Wooden Chest of Drawers', slug: 'wooden-chest-drawers' },
+        { name: 'Metal Frame Drawers', slug: 'metal-frame-drawers' },
+        { name: 'Modern Minimalist Drawers', slug: 'minimalist-drawers' }
       ]
     },
     {
-      id: 'material-drawers',
-      name: 'Drawers by Material',
-      slug: 'material-drawers',
-      description: 'Quality drawers in various materials',
-      count: 15,
+      id: 'under-bed-storage',
+      name: 'Under-Bed Storage',
+      slug: 'under-bed-storage',
+      description: 'Maximize your space with under-bed storage solutions',
+      metaTitle: 'Under-Bed Storage | Smart Storage Solutions',
+      metaDescription: 'Make the most of your space with our under-bed storage solutions. From slide-out drawers to storage bins.',
       image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
       items: [
-        { name: 'Wooden Drawers', slug: 'wooden-drawers' },
-        { name: 'Plastic Drawers', slug: 'plastic-drawers' },
-        { name: 'Metal Drawers', slug: 'metal-drawers' }
+        { name: 'Slide-out Drawer Systems', slug: 'slide-out-drawers' },
+        { name: 'Plastic Under-Bed Bins', slug: 'under-bed-bins' }
       ]
     },
     {
-      id: 'room-drawers',
-      name: 'Drawers by Room',
-      slug: 'room-drawers',
-      description: 'Room-specific storage solutions',
-      count: 30,
+      id: 'bedside-tables',
+      name: 'Bedside Tables',
+      slug: 'bedside-tables',
+      description: 'Functional and stylish bedside storage solutions',
+      metaTitle: 'Bedside Tables | Nightstands with Storage',
+      metaDescription: 'Complete your bedroom with our range of bedside tables. From storage nightstands to compact designs.',
       image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
       items: [
-        { name: 'Bedroom Drawers', slug: 'bedroom-drawers' },
-        { name: 'Kids Room Drawers', slug: 'kids-room-drawers' },
-        { name: 'Office Drawers', slug: 'office-drawers' },
-        { name: 'Bathroom Drawers', slug: 'bathroom-drawers' },
-        { name: 'Living Room Drawers', slug: 'living-room-drawers' }
+        { name: 'Nightstands with Storage', slug: 'storage-nightstands' },
+        { name: 'Compact Nightstands', slug: 'compact-nightstands' }
       ]
     },
     {
-      id: 'special-drawers',
-      name: 'Special Features',
-      slug: 'special-drawers',
-      description: 'Drawers with unique features',
-      count: 18,
+      id: 'modular-drawers',
+      name: 'Modular Drawers',
+      slug: 'modular-drawers',
+      description: 'Customizable drawer solutions for any space',
+      metaTitle: 'Modular Drawers | Customizable Storage Solutions',
+      metaDescription: 'Create your perfect storage solution with our modular drawer systems. From stackable units to DIY configurations.',
       image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
       items: [
-        { name: 'Lockable Drawers', slug: 'lockable-drawers' },
-        { name: 'Stackable Drawers', slug: 'stackable-drawers' },
-        { name: 'Customizable Drawers', slug: 'customizable-drawers' }
+        { name: 'Stackable Drawer Units', slug: 'stackable-drawers' },
+        { name: 'DIY Configurable Drawers', slug: 'configurable-drawers' }
       ]
     }
-  ]
+  ],
+  buyingGuide: {
+    title: 'How to Choose the Right Storage Solution',
+    content: `
+      Select the perfect storage solution with these key considerations:
+
+      1. Space Assessment
+      - Measure available space carefully
+      - Consider room layout and access
+      - Think about vertical storage potential
+
+      2. Storage Needs
+      - Calculate required storage capacity
+      - List items to be stored
+      - Consider future storage needs
+
+      3. Style and Material
+      - Match with existing furniture
+      - Consider durability requirements
+      - Think about maintenance
+
+      4. Functionality
+      - Drawer depth and width
+      - Soft-close mechanisms
+      - Built-in organizers
+
+      5. Installation and Assembly
+      - DIY vs professional assembly
+      - Tool requirements
+      - Warranty coverage
+    `
+  }
 };

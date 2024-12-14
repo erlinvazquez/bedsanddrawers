@@ -28,6 +28,15 @@ const company = [
 ];
 
 const currentYear = new Date().getFullYear();
+const currentLocale = 'en'; // assuming 'en' as the current locale
+
+const footerCategories = [
+  { name: 'Luxury Beds', href: `/${currentLocale}/beds` },
+  { name: 'Designer Drawers', href: `/${currentLocale}/drawers` },
+  { name: 'Modern Sets', href: `/${currentLocale}/sets` },
+  { name: 'Kids Collection', href: `/${currentLocale}/kids` },
+];
+
 ---
 
 <footer class="bg-gray-900" aria-labelledby="footer-heading">
@@ -89,7 +98,7 @@ const currentYear = new Date().getFullYear();
               Shop
             </h3>
             <ul role="list" class="mt-4 space-y-4">
-              {categories.map((item) => (
+              {footerCategories.map((item) => (
                 <li>
                   <a href={item.href} class="text-base text-gray-300 hover:text-white">
                     {item.name}

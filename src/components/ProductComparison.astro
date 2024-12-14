@@ -1,5 +1,7 @@
 ---
 import StarRating from './StarRating.astro';
+import { getLocaleFromUrl } from '../i18n/utils';
+import type { Locale } from '../consts';
 
 interface ComparisonItem {
   name: string;
@@ -18,6 +20,8 @@ interface Props {
 }
 
 const { title, items } = Astro.props;
+const { pathname } = Astro.url;
+const currentLocale = getLocaleFromUrl(pathname);
 ---
 
 <section class="py-12 bg-white overflow-hidden">
@@ -53,7 +57,6 @@ const { title, items } = Astro.props;
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <StarRating rating={item.rating} />
-                <span class="ml-2 text-sm text-gray-500">{item.rating}</span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {item.firmness}
@@ -62,24 +65,18 @@ const { title, items } = Astro.props;
                 {item.material}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {item.cooling ? (
-                  <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : (
-                  <span>—</span>
-                )}
+                {item.cooling ? '✓' : '×'}
               </td>
-              <td class="px-6 py-4 text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <ul class="list-disc list-inside">
-                  {item.bestFor.map((use) => (
-                    <li>{use}</li>
+                  {item.bestFor.map((feature) => (
+                    <li>{feature}</li>
                   ))}
                 </ul>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href={item.link} class="text-purple-600 hover:text-purple-900">
-                  Check Price
+                <a href={`/${currentLocale}/${item.link}`} class="text-primary-600 hover:text-primary-900">
+                  View Details
                 </a>
               </td>
             </tr>
@@ -88,94 +85,63 @@ const { title, items } = Astro.props;
       </table>
     </div>
 
-    <!-- Mobile View (Carousel) -->
-    <div class="md:hidden">
-      <div class="swiper product-comparison-swiper">
-        <div class="swiper-wrapper">
-          {items.map((item) => (
-            <div class="swiper-slide">
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="aspect-w-1 aspect-h-1 mb-4">
-                  <img 
-                    src={item.image} 
-                    alt={item.name}
-                    class="w-full h-48 object-cover rounded-lg"
-                  />
-                </div>
-                <h3 class="text-lg font-semibold mb-2">{item.name}</h3>
-                <div class="space-y-2">
-                  <div class="flex items-center">
-                    <StarRating rating={item.rating} />
-                    <span class="ml-2 text-sm text-gray-500">{item.rating}</span>
-                  </div>
-                  <p class="text-sm text-gray-600">
-                    <span class="font-medium">Firmness:</span> {item.firmness}
-                  </p>
-                  <p class="text-sm text-gray-600">
-                    <span class="font-medium">Material:</span> {item.material}
-                  </p>
-                  <div class="flex items-center text-sm text-gray-600">
-                    <span class="font-medium">Cooling:</span>
-                    <span class="ml-2">
-                      {item.cooling ? (
-                        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                      ) : (
-                        <span>—</span>
-                      )}
-                    </span>
-                  </div>
-                  <div class="text-sm text-gray-600">
-                    <span class="font-medium">Best For:</span>
-                    <ul class="list-disc list-inside mt-1">
-                      {item.bestFor.map((use) => (
-                        <li>{use}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <a
-                    href={item.link}
-                    class="mt-4 block w-full text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
-                  >
-                    Check Price
-                  </a>
-                </div>
-              </div>
+    <!-- Mobile View -->
+    <div class="md:hidden space-y-6">
+      {items.map((item) => (
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <img class="w-full h-48 object-cover" src={item.image} alt={item.name} />
+          <div class="p-4">
+            <h3 class="text-lg font-medium text-gray-900">{item.name}</h3>
+            <div class="mt-2">
+              <StarRating rating={item.rating} />
             </div>
-          ))}
+            <dl class="mt-4 space-y-3">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Firmness</dt>
+                <dd class="mt-1 text-sm text-gray-900">{item.firmness}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Material</dt>
+                <dd class="mt-1 text-sm text-gray-900">{item.material}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Cooling</dt>
+                <dd class="mt-1 text-sm text-gray-900">{item.cooling ? 'Yes' : 'No'}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Best For</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <ul class="list-disc list-inside">
+                    {item.bestFor.map((feature) => (
+                      <li>{feature}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="mt-4">
+              <a
+                href={`/${currentLocale}/${item.link}`}
+                class="block w-full text-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="swiper-pagination"></div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .swiper-slide {
-    height: auto;
+  .text-primary-600 {
+    color: #4F46E5;
+  }
+  .bg-primary-600 {
+    background-color: #4F46E5;
+  }
+  .hover\:bg-primary-700:hover {
+    background-color: #4338CA;
   }
 </style>
-
-<script>
-  import Swiper from 'swiper';
-  import { Pagination } from 'swiper/modules';
-  import 'swiper/css';
-  import 'swiper/css/pagination';
-
-  new Swiper('.product-comparison-swiper', {
-    modules: [Pagination],
-    slidesPerView: 1.2,
-    spaceBetween: 16,
-    centeredSlides: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 2.2,
-      }
-    }
-  });
-</script>

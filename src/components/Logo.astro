@@ -1,0 +1,31 @@
+---
+import { COMPANY_NAME } from '../consts';
+import { getLocaleFromUrl } from '../i18n/utils';
+
+interface Props {
+  className?: string;
+}
+
+const { pathname } = Astro.url;
+const currentLocale = getLocaleFromUrl(pathname);
+const { className = "" } = Astro.props;
+---
+
+<a 
+  href={`/${currentLocale}/`} 
+  class={`inline-flex items-center ${className}`}
+  aria-label={COMPANY_NAME}
+>
+  <span class="text-3xl font-extrabold tracking-tighter">
+    <span class="text-primary-600">B</span>
+    <span class="text-gray-400">&</span>
+    <span class="text-primary-600">D</span>
+  </span>
+  <span class="ml-1 text-sm font-medium text-gray-600 tracking-wide">Furniture</span>
+</a>
+
+<style>
+  .text-primary-600 {
+    color: #4F46E5; /* Indigo 600 - you can adjust this color */
+  }
+</style>

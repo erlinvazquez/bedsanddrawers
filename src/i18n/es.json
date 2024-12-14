@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "defaultTitle": "Beds & Dreams - Colección de Muebles Premium",
+    "defaultDescription": "Descubre nuestra colección exclusiva de camas premium, soluciones de almacenamiento y muebles. Encuentra las piezas perfectas para tu hogar."
+  },
+  "nav": {
+    "home": "Inicio",
+    "beds": "Colección de Camas",
+    "baby_beds": "Cunas y Camas Infantiles",
+    "kids_beds": "Camas para Niños",
+    "single_beds": "Camas Individuales y Sencillas",
+    "double_beds": "Camas Matrimoniales",
+    "king_queen_beds": "Camas de Lujo King y Queen",
+    "sofa_beds": "Sofás Cama Convertibles",
+    "space_saving_beds": "Soluciones de Ahorro de Espacio",
+    "drawers": "Soluciones de Almacenamiento",
+    "chest_of_drawers": "Cómodas de Diseñador",
+    "under_bed_storage": "Organización Bajo Cama",
+    "bedside_tables": "Mesas de Noche y Buros",
+    "modular_drawers": "Sistemas de Almacenaje Personalizables",
+    "by_room": "Colecciones por Habitación",
+    "baby_rooms": "Cuartos de Bebé y Nursery",
+    "kids_rooms": "Dormitorios Infantiles",
+    "bedrooms": "Dormitorios Principales",
+    "studio_apartments": "Estudios y Espacios Pequeños",
+    "styles_materials": "Diseño y Materiales",
+    "wooden_furniture": "Colección Premium en Madera",
+    "upholstered_furniture": "Elegancia en Tapizados",
+    "metal_frame_furniture": "Diseños Modernos en Metal",
+    "eco_friendly_furniture": "Colección Sostenible",
+    "buying_guides": "Guías de Compra Experta"
+  },
+  "common": {
+    "categories": "Nuestras Colecciones",
+    "productComparison": "Comparar Productos",
+    "viewDetails": "Ver Detalles",
+    "learnMore": "Más Información",
+    "buyNow": "Comprar Ahora",
+    "addToCart": "Añadir al Carrito",
+    "moreInfo": "Más Información"
+  },
+  "categories": {
+    "beds": "Camas",
+    "drawers": "Almacenamiento",
+    "by_room": "Habitaciones",
+    "styles_materials": "Estilos"
+  }
+}

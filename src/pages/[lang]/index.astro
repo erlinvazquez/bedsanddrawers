@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ShoppingGuide from '../../components/home/ShoppingGuide.astro';
+import ProductComparison from '../../components/ProductComparison.astro';
+import CategoryWidget from '../../components/CategoryWidget.astro';
+import { categories } from '../../data/categories';
+import { mattressComparison } from '../../data/comparisons';
+import { LOCALES, type Locale } from '../../consts';
+import { getTranslations } from '../../i18n/translations';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const currentLocale = lang as Locale;
+const t = useTranslations(currentLocale);
+const translations = getTranslations(currentLocale);
+
+const featuredCategories = categories.slice(0, 3);
+---
+
+<Layout 
+  title={translations.meta.defaultTitle}
+  description={translations.meta.defaultDescription}
+  locale={currentLocale}
+>
+  <main>
+    <Hero />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="space-y-16">
+        <section>
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">{t('common.categories')}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredCategories.map((category) => (
+              <CategoryWidget 
+                title={t(`categories.${category.id}`)}
+                description={category.description}
+                image={category.image}
+                href={`/${currentLocale}/${category.slug}`}
+              />
+            ))}
+          </div>
+        </section>
+
+        <ProductComparison 
+          title={t('common.productComparison')}
+          items={mattressComparison} 
+        />
+
+        <ShoppingGuide />
+      </div>
+    </div>
+  </main>
+</Layout>

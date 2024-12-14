@@ -12,32 +12,32 @@ export interface ComparisonItem {
 export const mattressComparison: ComparisonItem[] = [
   {
     name: "Brooklyn Bedding Titan Plus Luxe",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+    image: "/images/mattresses/titan-plus-luxe.jpg",
     rating: 4.4,
     firmness: "Firm: 7.5/10",
     material: "Hybrid",
     cooling: false,
     bestFor: ["Side Sleepers", "Back Sleepers"],
-    link: "/product/titan-plus-luxe"
+    link: "category/mattresses/titan-plus-luxe"
   },
   {
     name: "Helix Plus Mattress",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+    image: "/images/mattresses/helix-plus.jpg",
     rating: 4.5,
     firmness: "Firm: 7/10",
     material: "Hybrid",
     cooling: false,
     bestFor: ["Back Sleepers", "Side Sleepers", "Stomach Sleepers"],
-    link: "/product/helix-plus"
+    link: "category/mattresses/helix-plus"
   },
   {
     name: "Saatva Mattress",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+    image: "/images/mattresses/saatva.jpg",
     rating: 4.8,
     firmness: "Multiple options",
     material: "Innerspring",
     cooling: true,
     bestFor: ["Back Sleepers", "Stomach Sleepers", "Hot Sleepers"],
-    link: "/product/saatva-mattress"
+    link: "category/mattresses/saatva-mattress"
   }
 ];

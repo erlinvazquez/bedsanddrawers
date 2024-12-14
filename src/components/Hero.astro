@@ -1,4 +1,8 @@
 ---
+import { getLocaleFromUrl } from '../i18n/utils';
+
+const { pathname } = Astro.url;
+const currentLocale = getLocaleFromUrl(pathname);
 ---
 
 <section class="relative bg-gray-900 h-[400px]">
@@ -24,7 +28,7 @@
         Shop Now
       </a>
       <a
-        href="/category/beds"
+        href={`/${currentLocale}/beds`}
         class="inline-flex items-center px-6 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-gray-900 transition-colors"
       >
         Explore Collection

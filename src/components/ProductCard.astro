@@ -11,14 +11,16 @@ interface Props {
 const { title, price, image, category, rating, affiliateLink } = Astro.props;
 ---
 
-<article class="bg-white rounded-lg shadow-md overflow-hidden" itemscope itemtype="https://schema.org/Product">
-  <img 
-    src={image} 
-    alt={title}
-    class="w-full h-64 object-cover"
-    loading="lazy"
-    itemprop="image"
-  />
+<article class="bg-white rounded-lg shadow-md overflow-hidden group" itemscope itemtype="https://schema.org/Product">
+  <div class="overflow-hidden">
+    <img 
+      src={image} 
+      alt={title}
+      class="w-full h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+      loading="lazy"
+      itemprop="image"
+    />
+  </div>
   <div class="p-4">
     <p class="text-sm text-purple-600" itemprop="category">{category}</p>
     <h3 class="text-lg font-semibold mt-1" itemprop="name">{title}</h3>

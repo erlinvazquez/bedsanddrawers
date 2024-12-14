@@ -5,12 +5,12 @@ interface Props {
   subcategories: Subcategory[];
 }
 
-const { subcategories } = Astro.props;
+const { subcategories, currentLocale } = Astro.props;
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
   {subcategories.map((subcategory) => (
-    <a href={`/category/${subcategory.slug}`} class="group">
+    <a href={`/${currentLocale}/${subcategory.slug}`} class="group">
       <div class="relative aspect-w-3 aspect-h-2 rounded-lg overflow-hidden bg-gray-100">
         <img
           src={subcategory.image}

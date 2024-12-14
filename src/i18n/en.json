@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "defaultTitle": "Beds & Dreams - Premium Furniture Collection",
+    "defaultDescription": "Discover our curated collection of premium beds, storage solutions, and furniture. Find the perfect pieces for your home."
+  },
+  "nav": {
+    "home": "Home",
+    "beds": "Bed Collection",
+    "baby_beds": "Baby & Toddler Beds",
+    "kids_beds": "Children's Beds",
+    "single_beds": "Single & Twin Beds",
+    "double_beds": "Full & Double Beds",
+    "king_queen_beds": "Luxury King & Queen Beds",
+    "sofa_beds": "Convertible Sofa Beds",
+    "space_saving_beds": "Space-Saving Solutions",
+    "drawers": "Storage Solutions",
+    "chest_of_drawers": "Designer Chest of Drawers",
+    "under_bed_storage": "Under-Bed Organization",
+    "bedside_tables": "Bedside Tables & Nightstands",
+    "modular_drawers": "Customizable Storage Systems",
+    "by_room": "Room Collections",
+    "baby_rooms": "Nursery & Baby Rooms",
+    "kids_rooms": "Children's Bedrooms",
+    "bedrooms": "Master Bedrooms",
+    "studio_apartments": "Studio & Small Spaces",
+    "styles_materials": "Design & Materials",
+    "wooden_furniture": "Premium Wood Collection",
+    "upholstered_furniture": "Upholstered Elegance",
+    "metal_frame_furniture": "Modern Metal Designs",
+    "eco_friendly_furniture": "Sustainable Collection",
+    "buying_guides": "Expert Buying Guides"
+  },
+  "common": {
+    "categories": "Our Collections",
+    "productComparison": "Compare Products",
+    "viewDetails": "View Details",
+    "learnMore": "Learn More",
+    "buyNow": "Buy Now",
+    "addToCart": "Add to Cart",
+    "moreInfo": "More Information"
+  },
+  "categories": {
+    "beds": "Beds",
+    "drawers": "Storage",
+    "by_room": "Rooms",
+    "styles_materials": "Styles"
+  }
+}

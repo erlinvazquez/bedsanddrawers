@@ -1,4 +1,6 @@
 ---
+import LanguagePicker from './LanguagePicker.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -17,11 +19,18 @@ const { title, description, image } = Astro.props;
     />
   </div>
   <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-      {title}
-    </h1>
-    <p class="mt-6 text-xl text-gray-300 max-w-3xl">
-      {description}
-    </p>
+    <div class="flex justify-between items-start">
+      <div>
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {title}
+        </h1>
+        <p class="mt-6 text-xl text-gray-300">
+          {description}
+        </p>
+      </div>
+      <div class="mt-2">
+        <LanguagePicker />
+      </div>
+    </div>
   </div>
 </div>

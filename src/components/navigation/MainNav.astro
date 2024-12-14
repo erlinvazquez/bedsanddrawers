@@ -2,7 +2,14 @@
 import { categories } from '../../data/categories';
 import MobileMenu from './MobileMenu.astro';
 import NavLink from './NavLink.astro';
-import { COMPANY_NAME } from '../../consts';
+import Logo from '../Logo.astro';
+import LanguagePicker from '../LanguagePicker.astro';
+import { getLocaleFromUrl, useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../consts';
+
+const { pathname } = Astro.url;
+const currentLocale = getLocaleFromUrl(pathname);
+const t = useTranslations(currentLocale);
 ---
 
 <nav class="bg-white border-b border-gray-200">
@@ -10,22 +17,28 @@ import { COMPANY_NAME } from '../../consts';
     <div class="flex justify-between h-16">
       <div class="flex">
         <div class="flex-shrink-0 flex items-center">
-          <a href="/" class="text-2xl font-bold text-gray-900">
-            {COMPANY_NAME}
+          <a href={`/${currentLocale}/`}>
+            <Logo />
           </a>
         </div>
         
         <!-- Desktop Navigation -->
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <NavLink href={`/${currentLocale}/`}>
+            {t('nav.home')}
+          </NavLink>
           {categories.map((category) => (
-            <NavLink href={`/category/${category.slug}`}>
-              {category.name}
+            <NavLink href={`/${currentLocale}/${category.slug}`}>
+              {t(`nav.${category.id}`)}
             </NavLink>
           ))}
         </div>
       </div>
 
-      <MobileMenu categories={categories} />
+      <div class="flex items-center space-x-4">
+        <LanguagePicker />
+        <MobileMenu categories={categories} />
+      </div>
     </div>
   </div>
 </nav>

@@ -130,9 +130,9 @@ export const products: Product[] = [
 ];
 
 export const categories = [
-  { name: "Luxury Beds", count: 15, href: "/category/beds" },
-  { name: "Designer Drawers", count: 12, href: "/category/drawers" },
-  { name: "Storage Solutions", count: 8, href: "/category/storage" },
-  { name: "Kids Collection", count: 10, href: "/category/kids" },
-  { name: "Modern Sets", count: 6, href: "/category/sets" }
+  { name: "Luxury Beds", count: 15, href: "/beds" },
+  { name: "Designer Drawers", count: 12, href: "/drawers" },
+  { name: "Storage Solutions", count: 8, href: "/storage" },
+  { name: "Kids Collection", count: 10, href: "/kids" },
+  { name: "Modern Sets", count: 6, href: "/sets" }
 ];

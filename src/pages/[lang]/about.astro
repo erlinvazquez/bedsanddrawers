@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { LOCALES, type Locale } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const currentLocale = lang as Locale;
+const t = useTranslations(currentLocale);
+---
+
+<Layout 
+  title={t('about.title')}
+  description={t('about.description')}
+  locale={currentLocale}
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-8">
+      {t('about.title')}
+    </h1>
+
+    <div class="prose prose-lg max-w-none">
+      <p>
+        {t('about.content.intro')}
+      </p>
+
+      <h2>{t('about.content.mission.title')}</h2>
+      <p>
+        {t('about.content.mission.text')}
+      </p>
+
+      <h2>{t('about.content.values.title')}</h2>
+      <ul>
+        <li>{t('about.content.values.quality')}</li>
+        <li>{t('about.content.values.service')}</li>
+        <li>{t('about.content.values.innovation')}</li>
+      </ul>
+
+      <h2>{t('about.content.contact.title')}</h2>
+      <p>
+        {t('about.content.contact.text')}
+      </p>
+    </div>
+  </main>
+</Layout>
