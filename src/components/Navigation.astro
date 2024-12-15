@@ -1,6 +1,7 @@
 ---
 import { NAV_ITEMS } from '../consts';
 import { useTranslations } from '../i18n/utils';
+import { getLocalizedPath } from '../i18n/urls';
 import Logo from './Logo.astro';
 import LanguagePicker from './LanguagePicker.astro';
 import { getLocaleFromUrl } from '../i18n/utils';
@@ -8,39 +9,73 @@ import { getLocaleFromUrl } from '../i18n/utils';
 const { pathname } = Astro.url;
 const currentLocale = getLocaleFromUrl(pathname);
 const t = useTranslations(currentLocale);
+
+// Generate structured data for SiteNavigationElement
+const navigationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": NAV_ITEMS.map(item => t(`nav.${item.label}`)),
+  "url": NAV_ITEMS.map(item => `${Astro.url.origin}${getLocalizedPath(item.href, currentLocale)}`)
+};
 ---
 
 <header class="bg-white shadow-sm fixed w-full top-0 z-50">
-  <nav class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
+  <nav 
+    class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8" 
+    aria-label={t('nav.mainNavigation')} 
+    itemscope 
+    itemtype="https://schema.org/SiteNavigationElement"
+  >
     <div class="w-full py-4 flex items-center justify-between">
       <div class="flex items-center flex-grow">
-        <a href={`/${currentLocale}`} class="flex-shrink-0 hover:opacity-90 transition-opacity">
+        <a 
+          href={`/${currentLocale}`} 
+          class="flex-shrink-0 hover:opacity-90 transition-opacity"
+          aria-label={t('nav.homeLink')}
+          itemprop="url"
+        >
           <Logo />
         </a>
         <div class="hidden lg:flex flex-grow justify-center space-x-6 xl:space-x-8 2xl:space-x-12">
           {NAV_ITEMS.map(item => (
-            <div class="relative group">
+            <div class="relative group" role="navigation">
               <a
-                href={`/${currentLocale}${item.href}`}
+                href={`/${currentLocale}${getLocalizedPath(item.href, currentLocale)}`}
                 class="text-sm xl:text-base font-medium text-gray-600 hover:text-gray-900 inline-flex items-center whitespace-nowrap"
+                itemprop="url"
+                aria-label={t(`nav.${item.label}`)}
+                {...(item.submenu && { 'aria-haspopup': 'true', 'aria-expanded': 'false' })}
               >
-                {t(`nav.${item.label}`)}
+                <span itemprop="name">{t(`nav.${item.label}`)}</span>
                 {item.submenu && (
-                  <svg class="ml-1.5 h-4 w-4 xl:h-5 xl:w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg 
+                    class="ml-1.5 h-4 w-4 xl:h-5 xl:w-5" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
                 )}
               </a>
               {item.submenu && (
-                <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
-                  <div class="py-2" role="menu" aria-orientation="vertical">
+                <div 
+                  class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="nav-dropdown"
+                >
+                  <div class="py-2">
                     {item.submenu.map(subitem => (
                       <a
-                        href={`/${currentLocale}${subitem.href}`}
-                        class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                        href={`/${currentLocale}${getLocalizedPath(subitem.href, currentLocale)}`}
+                        class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
                         role="menuitem"
+                        itemprop="url"
+                        tabindex="0"
                       >
-                        {t(`nav.${subitem.label}`)}
+                        <span itemprop="name">{t(`nav.${subitem.label}`)}</span>
                       </a>
                     ))}
                   </div>
@@ -52,39 +87,48 @@ const t = useTranslations(currentLocale);
       </div>
       <div class="flex items-center space-x-4 ml-4">
         <LanguagePicker />
-        <!-- Mobile menu button -->
         <button
           type="button"
-          class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+          class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600"
           aria-expanded="false"
           id="mobile-menu-button"
+          aria-label={t('nav.toggleMenu')}
         >
-          <span class="sr-only">Open main menu</span>
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span class="sr-only">{t('nav.toggleMenu')}</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
     <!-- Mobile menu -->
-    <div class="lg:hidden hidden" id="mobile-menu">
+    <div 
+      class="lg:hidden hidden" 
+      id="mobile-menu" 
+      role="navigation" 
+      aria-label={t('nav.mobileMenu')}
+    >
       <div class="py-2 space-y-1">
         {NAV_ITEMS.map(item => (
           <div class="w-full">
             <a
-              href={`/${currentLocale}${item.href}`}
-              class="block px-4 py-2.5 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+              href={`/${currentLocale}${getLocalizedPath(item.href, currentLocale)}`}
+              class="block px-4 py-2.5 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
+              itemprop="url"
             >
-              {t(`nav.${item.label}`)}
+              <span itemprop="name">{t(`nav.${item.label}`)}</span>
             </a>
             {item.submenu && (
-              <div class="bg-gray-50">
+              <div class="bg-gray-50" role="menu" aria-label={t(`nav.${item.label}Submenu`)}>
                 {item.submenu.map(subitem => (
                   <a
-                    href={`/${currentLocale}${subitem.href}`}
-                    class="block px-8 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    href={`/${currentLocale}${getLocalizedPath(subitem.href, currentLocale)}`}
+                    class="block px-8 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                    role="menuitem"
+                    itemprop="url"
+                    tabindex="0"
                   >
-                    {t(`nav.${subitem.label}`)}
+                    <span itemprop="name">{t(`nav.${subitem.label}`)}</span>
                   </a>
                 ))}
               </div>
@@ -95,7 +139,10 @@ const t = useTranslations(currentLocale);
     </div>
   </nav>
 </header>
-<div class="h-20"></div> <!-- Spacer for fixed header -->
+<div class="h-20" aria-hidden="true"></div> <!-- Spacer for fixed header -->
+
+<!-- Inject structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(navigationStructuredData)} />
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -103,9 +150,27 @@ const t = useTranslations(currentLocale);
 
   if (mobileMenuButton && mobileMenu) {
     mobileMenuButton.addEventListener('click', () => {
-      const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-      mobileMenuButton.setAttribute('aria-expanded', (!expanded).toString());
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
       mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.contains(event.target as Node) && 
+          !mobileMenuButton.contains(event.target as Node) && 
+          !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 </script>
@@ -118,20 +183,10 @@ const t = useTranslations(currentLocale);
     opacity: 1;
   }
   
-  /* Ensure dropdown menus don't get cut off */
-  .group {
-    position: relative;
-    padding-bottom: 2rem;
-    margin-bottom: -2rem;
-  }
-  
-  /* Smooth transitions for menu items */
-  .group a {
-    transition: all 0.2s ease-in-out;
-  }
-  
-  /* Ensure dropdowns are above other content */
-  .group:hover > div {
-    z-index: 50;
+  /* Improve focus styles for keyboard navigation */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #7c3aed;
+    outline-offset: 2px;
   }
 </style>
