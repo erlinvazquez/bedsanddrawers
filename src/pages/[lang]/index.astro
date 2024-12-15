@@ -5,8 +5,10 @@ import ShoppingGuide from '../../components/home/ShoppingGuide.astro';
 import ProductComparison from '../../components/ProductComparison.astro';
 import CategoryWidget from '../../components/CategoryWidget.astro';
 import TrendingProducts from '../../components/TrendingProducts.astro';
+import FAQ from '../../components/FAQ.astro';
 import { categories } from '../../data/categories';
 import { mattressComparison } from '../../data/comparisons';
+import { homepageFAQ } from '../../data/faq';
 import { LOCALES, type Locale } from '../../consts';
 import { getTranslations } from '../../i18n/translations';
 import { useTranslations } from '../../i18n/utils';
@@ -49,6 +51,11 @@ const featuredCategories = categories.slice(0, 3);
         </section>
 
         <TrendingProducts locale={currentLocale} />
+
+        <FAQ 
+          title="Frequently Asked Questions"
+          items={homepageFAQ}
+        />
 
         <ProductComparison 
           title={t('common.productComparison')}
