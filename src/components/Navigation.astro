@@ -147,29 +147,41 @@ const navigationStructuredData = {
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
+  const body = document.body;
+  let isOpen = false;
 
   if (mobileMenuButton && mobileMenu) {
     mobileMenuButton.addEventListener('click', () => {
+      isOpen = !isOpen;
       const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
       mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
       mobileMenu.classList.toggle('hidden');
+      
+      // Toggle body scroll
+      if (!mobileMenu.classList.contains('hidden')) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = '';
+      }
     });
 
-    // Close mobile menu when clicking outside
+    // Close menu when clicking outside
     document.addEventListener('click', (event) => {
       if (!mobileMenu.contains(event.target as Node) && 
           !mobileMenuButton.contains(event.target as Node) && 
           !mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
         mobileMenuButton.setAttribute('aria-expanded', 'false');
+        body.style.overflow = ''; // Restore body scroll
       }
     });
 
-    // Handle escape key
+    // Close menu on escape key
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
         mobileMenuButton.setAttribute('aria-expanded', 'false');
+        body.style.overflow = ''; // Restore body scroll
       }
     });
   }
