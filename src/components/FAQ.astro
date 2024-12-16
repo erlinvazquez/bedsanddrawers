@@ -12,26 +12,38 @@ interface Props {
 const { title, items } = Astro.props;
 ---
 
-<section class="py-12 bg-white">
+<section 
+  class="py-12 bg-white"
+  x-data="{ 
+    activeIndex: null,
+    toggle(index) {
+      this.activeIndex = this.activeIndex === index ? null : index;
+    }
+  }"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-bold text-gray-900 mb-8">{title}</h2>
     
     <div class="space-y-6" itemscope itemtype="https://schema.org/FAQPage">
-      {items.map((item) => (
-        <div class="border-b border-gray-200 pb-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      {items.map((item, index) => (
+        <div 
+          class="border-b border-gray-200 pb-6" 
+          itemscope 
+          itemprop="mainEntity" 
+          itemtype="https://schema.org/Question"
+        >
           <button
             class="flex justify-between items-center w-full text-left"
-            aria-expanded="false"
-            x-data="{ open: false }"
-            @click="open = !open"
+            @click={`toggle(${index})`}
+            :aria-expanded={`activeIndex === ${index}`}
           >
             <h3 class="text-lg font-medium text-gray-900" itemprop="name">
               {item.question}
             </h3>
             <span class="ml-6 flex-shrink-0">
               <svg
-                class="h-6 w-6 text-gray-400"
-                x-bind:class="{ 'rotate-180': open }"
+                class="h-6 w-6 text-gray-400 transition-transform duration-200"
+                :class={`{ 'rotate-180': activeIndex === ${index} }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -43,8 +55,13 @@ const { title, items } = Astro.props;
           </button>
           <div
             class="mt-2"
-            x-data="{ open: false }"
-            x-show="open"
+            x-show={`activeIndex === ${index}`}
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform -translate-y-2"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 transform translate-y-0"
+            x-transition:leave-end="opacity-0 transform -translate-y-2"
             x-cloak
             itemscope
             itemprop="acceptedAnswer"
@@ -59,3 +76,9 @@ const { title, items } = Astro.props;
     </div>
   </div>
 </section>
+
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>
