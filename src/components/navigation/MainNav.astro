@@ -1,6 +1,5 @@
 ---
 import { categories } from '../../data/categories';
-import MobileMenu from './MobileMenu.astro';
 import NavLink from './NavLink.astro';
 import Logo from '../Logo.astro';
 import LanguagePicker from '../LanguagePicker.astro';
@@ -38,7 +37,6 @@ const links = navigationLinks[currentLocale as keyof typeof navigationLinks];
 
       <div class="flex items-center space-x-4">
         <LanguagePicker />
-        <MobileMenu categories={categories} />
       </div>
     </div>
   </div>
