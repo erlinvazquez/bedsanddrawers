@@ -144,37 +144,73 @@ data/categories.ts
     └── Category Page
 ```
 
-## Best Practices
+## Architecture Diagram
+```
+                                     ┌─────────────────┐
+                                     │   Client Side   │
+                                     └────────┬────────┘
+                                              │
+                                              ▼
+┌─────────────────┐                 ┌─────────────────┐
+│  Static Assets  │◄────────────────│    Astro SSG    │
+│   (CDN/Edge)    │                 │    (Build)      │
+└─────────────────┘                 └────────┬────────┘
+                                             │
+                                             ▼
+┌─────────────────┐                 ┌─────────────────┐
+│   Affiliate     │◄────────────────│  Data Layer     │
+│   Networks      │                 │                 │
+└─────────────────┘                 └────────┬────────┘
+                                             │
+                                             ▼
+┌─────────────────┐                 ┌─────────────────┐
+│   Analytics &   │◄────────────────│  SEO & Meta     │
+│   Tracking      │                 │                 │
+└─────────────────┘                 └─────────────────┘
+```
 
-### Code Organization
-- Components are small and focused
-- Logic is separated from presentation
-- Utilities are reusable and pure functions
-- Types are well-defined and shared
+## Suggested Improvements for Affiliate Website
 
-### Performance
-- Images are optimized
-- Components are lazy-loaded when possible
-- Static generation for faster page loads
-- Efficient bundling and code splitting
+### 1. Affiliate Management
+- Create dedicated `/src/affiliate` directory
+- Implement affiliate link tracking system
+- Add affiliate disclaimer management
+- Create affiliate network integrations module
 
-### SEO
-- Proper meta tags
-- Structured data implementation
-- Semantic HTML
-- Accessible components
+### 2. Analytics Enhancement
+- Add conversion tracking
+- Implement click tracking for affiliate links
+- Create performance analytics dashboard
+- Add A/B testing capabilities
 
-### Internationalization
-- Consistent translation structure
-- URL localization
-- Language detection
-- Fallback handling
+### 3. Content Optimization
+- Implement automated product updates
+- Add price comparison features
+- Create review management system
+- Add user-generated content support
 
-## Future Considerations
-- E-commerce integration
-- User authentication
-- Shopping cart functionality
-- Payment processing
-- Order management
-- Customer reviews
-- Inventory management
+### 4. Performance Improvements
+- Implement incremental static regeneration
+- Add automated price updates
+- Create cache management system
+- Implement automated affiliate link validation
+
+### 5. Monetization Features
+- Add multiple affiliate network support
+- Implement price alert system
+- Create deal aggregation
+- Add automated best deal finder
+
+### 6. SEO Enhancements
+- Add rich snippets for products
+- Implement automated sitemap updates
+- Create automated meta description generation
+- Add schema markup for reviews
+
+### 7. User Experience
+- Add product comparison tools
+- Implement price history charts
+- Create personalized recommendations
+- Add email notification system
+
+These improvements focus on maximizing affiliate revenue while maintaining excellent user experience and SEO performance.
