@@ -1,15 +1,19 @@
 ---
 import TipsHeader from './TipsHeader.astro';
 import TipsGrid from './TipsGrid.astro';
+import Button from '../ui/Button.astro';
 import { tips, tipsTranslations } from '../../data/tips';
 import type { Locale } from '../../consts';
 
 interface Props {
   locale: Locale;
+  limit?: number;
+  showViewMore?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, limit = 8, showViewMore = true } = Astro.props;
 const translations = tipsTranslations[locale];
+const displayedTips = limit ? tips.slice(0, limit) : tips;
 ---
 
 <section class="py-16">
@@ -18,6 +22,18 @@ const translations = tipsTranslations[locale];
       title={translations.title}
       description={translations.description}
     />
-    <TipsGrid tips={tips} />
+    <TipsGrid tips={displayedTips} />
+    
+    {showViewMore && tips.length > limit && (
+      <div class="mt-12 text-center">
+        <Button 
+          href={`/${locale}/tips`}
+          variant="primary"
+          className="px-8 py-3"
+        >
+          {translations.viewMore}
+        </Button>
+      </div>
+    )}
   </div>
 </section>

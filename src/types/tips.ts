@@ -10,6 +10,7 @@ export interface Tip {
 export interface TipsTranslations {
   title: string;
   description: string;
+  viewMore: string;
   categories: {
     beds: string;
     drawers: string;
