@@ -108,7 +108,8 @@ export const tipsTranslations: Record<string, TipsTranslations> = {
       drawers: 'Storage',
       health: 'Health',
       pets: 'Pets'
-    }
+    },
+    viewMore: 'View More'
   },
   es: {
     title: 'Consejos y Guías de Expertos',
@@ -118,6 +119,7 @@ export const tipsTranslations: Record<string, TipsTranslations> = {
       drawers: 'Almacenamiento',
       health: 'Salud',
       pets: 'Mascotas'
-    }
+    },
+    viewMore: 'Ver Más'
   }
 };

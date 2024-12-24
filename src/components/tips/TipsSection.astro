@@ -26,13 +26,13 @@ const displayedTips = limit ? tips.slice(0, limit) : tips;
     
     {showViewMore && tips.length > limit && (
       <div class="mt-12 text-center">
-        <Button 
-          href={`/${locale}/tips`}
-          variant="primary"
-          className="px-8 py-3"
-        >
-          {translations.viewMore}
-        </Button>
+                              <Button 
+                                href={`/${locale}/tips`}
+                                variant="outline"
+                                className="w-full sm:w-auto justify-center text-base sm:text-lg px-6 py-3"
+                              >
+                                {translations.viewMore}
+                              </Button>
       </div>
     )}
   </div>
