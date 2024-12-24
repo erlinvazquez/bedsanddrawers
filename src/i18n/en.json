@@ -28,7 +28,12 @@
     "upholstered_furniture": "Upholstered Elegance",
     "metal_frame_furniture": "Modern Metal Designs",
     "eco_friendly_furniture": "Sustainable Collection",
-    "buying_guides": "Expert Buying Guides"
+    "buying_guides": "Buying Guides",
+    "tips": "Tips"
+  },
+  "tips": {
+    "title": "Tips",
+    "description": "Tips to help you make the best furniture choices for your home"
   },
   "common": {
     "categories": "Our Collections",

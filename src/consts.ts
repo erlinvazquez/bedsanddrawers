@@ -58,5 +58,6 @@ export const NAV_ITEMS = [
     { href: '/styles-materials/metal', label: 'metal_frame_furniture' },
     { href: '/styles-materials/eco-friendly', label: 'eco_friendly_furniture' }
   ]},
+  { href: '/tips', label: 'tips' },
   { href: '/buying-guides', label: 'buying_guides' }
 ] as const;

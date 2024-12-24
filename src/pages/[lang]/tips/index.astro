@@ -1,0 +1,26 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import TipsSection from '../../../components/tips/TipsSection.astro';
+import { LOCALES, type Locale } from '../../../consts';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const currentLocale = lang as Locale;
+const t = useTranslations(currentLocale);
+---
+
+<Layout 
+  title={t('tips.title')}
+  description={t('tips.description')}
+  locale={currentLocale}
+>
+  <main class="min-h-screen bg-gray-50">
+    <TipsSection locale={currentLocale} />
+  </main>
+</Layout>

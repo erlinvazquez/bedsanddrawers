@@ -28,7 +28,12 @@
     "upholstered_furniture": "Elegancia en Tapizados",
     "metal_frame_furniture": "Diseños Modernos en Metal",
     "eco_friendly_furniture": "Colección Sostenible",
-    "buying_guides": "Guías de Compra Experta"
+    "buying_guides": "Guías de Compra Experta",
+    "tips": "Consejos"
+  },
+  "tips": {
+    "title": "Consejos",
+    "description": "Consejos para ayudarte a elegir los mejores muebles para tu hogar"
   },
   "common": {
     "categories": "Nuestras Colecciones",
