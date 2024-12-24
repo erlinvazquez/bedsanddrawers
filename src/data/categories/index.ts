@@ -1,7 +1,7 @@
+import type { Category, Subcategory } from '../../types';
 import { bedsCategory } from './beds';
 import { drawersCategory } from './drawers';
 import { setsCategory } from './sets';
-export * from './types';
 
 export const categories = [bedsCategory, drawersCategory, setsCategory];
 
@@ -14,4 +14,4 @@ export function getSubcategoryBySlug(categorySlug: string, subcategorySlug: stri
   return category?.subcategories.find(subcategory => subcategory.slug === subcategorySlug);
 }
 
-export type { Category, Subcategory } from './types';
+export type { Category, Subcategory } from '../../types';

@@ -15,8 +15,10 @@ export interface Subcategory {
   slug: string;
   description: string;
   image: string;
-  metaTitle: string;
-  metaDescription: string;
+  count: number;
+  metaTitle?: string;
+  metaDescription?: string;
+  items: Array<{ name: string; slug: string; }>;
   products?: Product[];
 }
 

@@ -1,12 +1,9 @@
-import { getOriginalPath } from '../i18n/urls';
+import { getLocalizedPath as getLocalizedUrlPath } from '../i18n/urls';
 import type { Locale } from '../consts';
 
 export function parseLocalizedPath(path: string, locale: Locale) {
-  // Get the original (non-localized) path
-  const originalPath = getOriginalPath(path, locale);
-  
   // Parse the path segments
-  const segments = originalPath.split('/').filter(Boolean);
+  const segments = path.split('/').filter(Boolean);
   
   // Extract category and subcategory
   const category = segments[0] || '';
@@ -15,11 +12,11 @@ export function parseLocalizedPath(path: string, locale: Locale) {
   return {
     category,
     subcategory,
-    originalPath,
+    originalPath: path,
   };
 }
 
 export function buildLocalizedPath(category: string, subcategory: string = '', locale: Locale) {
   const path = subcategory ? `/${category}/${subcategory}` : `/${category}`;
-  return getLocalizedPath(path, locale);
+  return getLocalizedUrlPath(path, locale);
 }

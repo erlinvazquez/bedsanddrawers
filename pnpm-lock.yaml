@@ -26,6 +26,15 @@ importers:
       '@headlessui/react':
         specifier: ^1.7.18
         version: 1.7.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroicons/react':
+        specifier: ^2.0.18
+        version: 2.2.0(react@18.3.1)
+      '@types/alpinejs':
+        specifier: ^3.13.11
+        version: 3.13.11
+      alpinejs:
+        specifier: ^3.14.7
+        version: 3.14.8
       astro:
         specifier: ^4.15.11
         version: 4.16.17(rollup@4.28.1)(typescript@5.7.2)
@@ -35,6 +44,9 @@ importers:
       sharp:
         specifier: ^0.33.2
         version: 0.33.5
+      swiper:
+        specifier: ^11.0.5
+        version: 11.1.15
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.16
@@ -336,6 +348,11 @@ packages:
       react: ^16 || ^17 || ^18
       react-dom: ^16 || ^17 || ^18
 
+  '@heroicons/react@2.2.0':
+    resolution: {integrity: sha512-LMcepvRaS9LYHJGsF0zzmgKCUim/X3N/DQKc4jepAXJ7l8QxJ1PmxJzqplF2Z3FE4PqBAIGyJAQ/w4B5dsqbtQ==}
+    peerDependencies:
+      react: '>= 16 || ^19.0.0-rc'
+
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
@@ -616,6 +633,9 @@ packages:
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
 
+  '@types/alpinejs@3.13.11':
+    resolution: {integrity: sha512-3KhGkDixCPiLdL3Z/ok1GxHwLxEWqQOKJccgaQL01wc0EVM2tCTaqlC3NIedmxAXkVzt/V6VTM8qPgnOHKJ1MA==}
+
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -685,6 +705,12 @@ packages:
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0
 
+  '@vue/reactivity@3.1.5':
+    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
+
+  '@vue/shared@3.1.5':
+    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
+
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -694,6 +720,9 @@ packages:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  alpinejs@3.14.8:
+    resolution: {integrity: sha512-wT2fuP2DXpGk/jKaglwy7S/IJpm1FD+b7U6zUrhwErjoq5h27S4dxkJEXVvhbdwyPv9U+3OkUuNLkZT4h2Kfrg==}
 
   ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
@@ -1910,6 +1939,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  swiper@11.1.15:
+    resolution: {integrity: sha512-IzWeU34WwC7gbhjKsjkImTuCRf+lRbO6cnxMGs88iVNKDwV+xQpBCJxZ4bNH6gSrIbbyVJ1kuGzo3JTtz//CBw==}
+    engines: {node: '>= 4.7.0'}
+
   tailwindcss@3.4.16:
     resolution: {integrity: sha512-TI4Cyx7gDiZ6r44ewaJmt0o6BrMCT5aK5e0rmJ/G9Xq3w7CX/5VXl/zIPEJZFUK5VEqwByyhqNPycPlvcK4ZNw==}
     engines: {node: '>=14.0.0'}
@@ -2445,6 +2478,10 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
+  '@heroicons/react@2.2.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
       '@img/sharp-libvips-darwin-arm64': 1.0.4
@@ -2697,6 +2734,8 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.6
 
+  '@types/alpinejs@3.13.11': {}
+
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.26.3
@@ -2780,11 +2819,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@vue/reactivity@3.1.5':
+    dependencies:
+      '@vue/shared': 3.1.5
+
+  '@vue/shared@3.1.5': {}
+
   acorn-jsx@5.3.2(acorn@8.14.0):
     dependencies:
       acorn: 8.14.0
 
   acorn@8.14.0: {}
+
+  alpinejs@3.14.8:
+    dependencies:
+      '@vue/reactivity': 3.1.5
 
   ansi-align@3.0.1:
     dependencies:
@@ -4494,6 +4543,8 @@ snapshots:
       ts-interface-checker: 0.1.13
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  swiper@11.1.15: {}
 
   tailwindcss@3.4.16:
     dependencies:

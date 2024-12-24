@@ -1,5 +1,5 @@
 import { sequence } from 'astro:middleware';
-import { DEFAULT_LOCALE, LOCALES } from './consts';
+import { DEFAULT_LOCALE, LOCALES, type Locale } from './consts';
 
 export function languageMiddleware({ request, redirect }, next) {
   const url = new URL(request.url);
@@ -11,7 +11,7 @@ export function languageMiddleware({ request, redirect }, next) {
   }
 
   // If no language in URL or invalid language, redirect to default language
-  if (!lang || !LOCALES.includes(lang)) {
+  if (!lang || !LOCALES.includes(lang as Locale)) {
     const redirectPath = url.pathname === '/' ? `/${DEFAULT_LOCALE}` : `/${DEFAULT_LOCALE}${url.pathname}`;
     return redirect(redirectPath);
   }

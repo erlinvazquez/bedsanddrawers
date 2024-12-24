@@ -7,6 +7,12 @@ export interface Category {
   metaDescription: string;
   image: string;
   subcategories: Subcategory[];
+  buyingGuide?: BuyingGuide;
+}
+
+export interface BuyingGuide {
+  title: string;
+  content: string;
 }
 
 export interface Subcategory {
@@ -60,7 +66,8 @@ export const categories: Category[] = [
         count: 30,
         image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c'
       }
-    ]
+    ],
+    buyingGuide: undefined
   },
   {
     id: 'drawers',
@@ -95,7 +102,8 @@ export const categories: Category[] = [
         count: 15,
         image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
       }
-    ]
+    ],
+    buyingGuide: undefined
   },
   {
     id: 'living-room',
@@ -130,7 +138,8 @@ export const categories: Category[] = [
         count: 15,
         image: 'https://images.unsplash.com/photo-1560448075-bb485b067938'
       }
-    ]
+    ],
+    buyingGuide: undefined
   },
   {
     id: 'bedroom-sets',
@@ -157,7 +166,8 @@ export const categories: Category[] = [
         count: 8,
         image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85'
       }
-    ]
+    ],
+    buyingGuide: undefined
   },
   {
     id: 'storage',
@@ -192,6 +202,7 @@ export const categories: Category[] = [
         count: 25,
         image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
       }
-    ]
+    ],
+    buyingGuide: undefined
   }
 ];

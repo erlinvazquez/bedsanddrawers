@@ -21,7 +21,9 @@ export const setsCategory: Category = {
         { name: 'Complete Bedroom Sets', slug: 'complete-bedroom-sets' },
         { name: 'Bunk Bed Sets with Storage', slug: 'bunk-bed-storage-sets' },
         { name: 'Daybed Sets', slug: 'daybed-sets' }
-      ]
+      ],
+      metaTitle: 'Bedroom Sets | Complete Bedroom Solutions',
+      metaDescription: 'Shop our complete bedroom furniture sets. Find matching dressers, daybeds, and more.'
     },
     {
       id: 'accessories',
@@ -38,7 +40,9 @@ export const setsCategory: Category = {
         { name: 'Nightstands', slug: 'nightstands' },
         { name: 'Closet Organizers', slug: 'closet-organizers' },
         { name: 'Shelves and Cabinets', slug: 'shelves-cabinets' }
-      ]
+      ],
+      metaTitle: 'Related Products | Essential Bedroom Accessories',
+      metaDescription: 'Shop our essential bedroom accessories and storage. Find mattresses, headboards, and more.'
     }
   ]
 };

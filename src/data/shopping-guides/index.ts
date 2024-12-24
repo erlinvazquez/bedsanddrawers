@@ -38,7 +38,7 @@ export function getShoppingGuide(category: string): ShoppingGuide {
       },
       {
         name: 'Style',
-        description: 'Choose a design that matches your room's aesthetic.'
+        description: 'Choose a design that matches your room\'s aesthetic.'
       }
     ],
     brands: [

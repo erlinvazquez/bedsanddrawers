@@ -7,6 +7,10 @@ export interface Category {
   metaDescription: string;
   image: string;
   subcategories: Subcategory[];
+  buyingGuide?: {
+    title: string;
+    content: string;
+  };
 }
 
 export interface Subcategory {
@@ -14,6 +18,8 @@ export interface Subcategory {
   name: string;
   slug: string;
   description: string;
+  metaTitle: string;
+  metaDescription: string;
   count: number;
   image: string;
   items: SubcategoryItem[];

@@ -21,7 +21,8 @@ export const drawersCategory: Category = {
         { name: 'Wooden Chest of Drawers', slug: 'wooden-chest-drawers' },
         { name: 'Metal Frame Drawers', slug: 'metal-frame-drawers' },
         { name: 'Modern Minimalist Drawers', slug: 'minimalist-drawers' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'under-bed-storage',
@@ -34,7 +35,8 @@ export const drawersCategory: Category = {
       items: [
         { name: 'Slide-out Drawer Systems', slug: 'slide-out-drawers' },
         { name: 'Plastic Under-Bed Bins', slug: 'under-bed-bins' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'bedside-tables',
@@ -47,7 +49,8 @@ export const drawersCategory: Category = {
       items: [
         { name: 'Nightstands with Storage', slug: 'storage-nightstands' },
         { name: 'Compact Nightstands', slug: 'compact-nightstands' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'modular-drawers',
@@ -60,7 +63,8 @@ export const drawersCategory: Category = {
       items: [
         { name: 'Stackable Drawer Units', slug: 'stackable-drawers' },
         { name: 'DIY Configurable Drawers', slug: 'configurable-drawers' }
-      ]
+      ],
+      count: 0
     }
   ],
   buyingGuide: {

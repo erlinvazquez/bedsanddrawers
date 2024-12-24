@@ -22,7 +22,8 @@ export const bedsCategory: Category = {
         { name: 'Mini Cribs', slug: 'mini-cribs' },
         { name: 'Bassinets', slug: 'bassinets' },
         { name: 'Portable Baby Beds', slug: 'portable-baby-beds' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'kids-beds',
@@ -37,7 +38,8 @@ export const bedsCategory: Category = {
         { name: 'Bunk Beds', slug: 'bunk-beds' },
         { name: 'Loft Beds', slug: 'loft-beds' },
         { name: 'Beds with Storage', slug: 'kids-storage-beds' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'single-beds',
@@ -51,7 +53,8 @@ export const bedsCategory: Category = {
         { name: 'Wooden Single Beds', slug: 'wooden-single-beds' },
         { name: 'Metal Frame Beds', slug: 'metal-single-beds' },
         { name: 'Upholstered Single Beds', slug: 'upholstered-single-beds' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'double-beds',
@@ -65,7 +68,8 @@ export const bedsCategory: Category = {
         { name: 'Compact Double Beds', slug: 'compact-double-beds' },
         { name: 'Modern Platform Beds', slug: 'platform-double-beds' },
         { name: 'Vintage-style Beds', slug: 'vintage-double-beds' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'king-queen-beds',
@@ -79,7 +83,8 @@ export const bedsCategory: Category = {
         { name: 'Luxury King Beds', slug: 'luxury-king-beds' },
         { name: 'Affordable Queen Beds', slug: 'affordable-queen-beds' },
         { name: 'Adjustable Beds', slug: 'adjustable-beds' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'sofa-beds',
@@ -93,7 +98,8 @@ export const bedsCategory: Category = {
         { name: 'Futons', slug: 'futons' },
         { name: 'Pull-out Beds', slug: 'pull-out-beds' },
         { name: 'Sectional Sofa Beds', slug: 'sectional-sofa-beds' }
-      ]
+      ],
+      count: 0
     },
     {
       id: 'space-saving-beds',
@@ -107,7 +113,8 @@ export const bedsCategory: Category = {
         { name: 'Murphy Beds', slug: 'murphy-beds' },
         { name: 'Trundle Beds', slug: 'trundle-beds' },
         { name: 'Foldable Beds', slug: 'foldable-beds' }
-      ]
+      ],
+      count: 0
     }
   ],
   buyingGuide: {
