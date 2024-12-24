@@ -30,9 +30,10 @@ const breadcrumbItems = [
   { name: product.title, href: '#' },
 ];
 
-const productImages = [product.image];
+// Create images array with main image and any additional images
+const images = [product.image];
 if (product.additionalImages) {
-  productImages.push(...product.additionalImages);
+  images.push(...product.additionalImages);
 }
 ---
 
@@ -51,16 +52,27 @@ if (product.additionalImages) {
       <Breadcrumb items={breadcrumbItems} />
       
       <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-12">
-        <!-- Image gallery -->
-        <ProductGallery images={productImages} />
+        {/* Image gallery */}
+        <ProductGallery 
+          images={images}
+          title={product.title}
+        />
         
-        <!-- Product info -->
-        <ProductInfo product={product} />
+        {/* Product info */}
+        <ProductInfo 
+          title={product.title}
+          price={product.price}
+          rating={product.rating}
+          description={product.description}
+          category={product.category}
+          features={product.features}
+          specifications={product.specifications}
+        />
       </div>
 
-      <!-- Related products -->
+      {/* Related products */}
       <RelatedProducts 
-        category={product.category}
+        products={products.filter(p => p.category === product.category && p.id !== product.id)}
         currentProductId={product.id}
       />
     </main>
