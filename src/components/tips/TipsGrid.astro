@@ -1,0 +1,21 @@
+---
+import TipCard from './TipCard.astro';
+import type { Tip } from '../../types/tips';
+
+interface Props {
+  tips: Tip[];
+}
+
+const { tips } = Astro.props;
+---
+
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  {tips.map((tip) => (
+    <TipCard
+      title={tip.title}
+      description={tip.description}
+      image={tip.image}
+      link={tip.link}
+    />
+  ))}
+</div>

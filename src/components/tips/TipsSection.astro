@@ -1,0 +1,23 @@
+---
+import TipsHeader from './TipsHeader.astro';
+import TipsGrid from './TipsGrid.astro';
+import { tips, tipsTranslations } from '../../data/tips';
+import type { Locale } from '../../consts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translations = tipsTranslations[locale];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <TipsHeader 
+      title={translations.title}
+      description={translations.description}
+    />
+    <TipsGrid tips={tips} />
+  </div>
+</section>
