@@ -146,28 +146,100 @@ data/categories.ts
 
 ## Architecture Diagram
 ```
-                                     ┌─────────────────┐
-                                     │   Client Side   │
-                                     └────────┬────────┘
-                                              │
-                                              ▼
-┌─────────────────┐                 ┌─────────────────┐
-│  Static Assets  │◄────────────────│    Astro SSG    │
-│   (CDN/Edge)    │                 │    (Build)      │
-└─────────────────┘                 └────────┬────────┘
-                                             │
-                                             ▼
-┌─────────────────┐                 ┌─────────────────┐
-│   Affiliate     │◄────────────────│  Data Layer     │
-│   Networks      │                 │                 │
-└─────────────────┘                 └────────┬────────┘
-                                             │
-                                             ▼
-┌─────────────────┐                 ┌─────────────────┐
-│   Analytics &   │◄────────────────│  SEO & Meta     │
-│   Tracking      │                 │                 │
-└─────────────────┘                 └─────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                           Client Browser                            │
+└───────────────────────────────────┬─────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                             CDN/Edge                                │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌──────────┐  │
+│  │   Images    │  │     CSS     │  │ JavaScript  │  │  Fonts   │  │
+│  └─────────────┘  └─────────────┘  └─────────────┘  └──────────┘  │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                           Astro SSG Build                           │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌──────────┐  │
+│  │   Pages     │  │ Components  │  │  Layouts    │  │  Utils    │  │
+│  └─────────────┘  └─────────────┘  └─────────────┘  └──────────┘  │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                            Data Layer                               │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌──────────┐  │
+│  │  Products   │  │ Categories  │  │    Blog     │  │   FAQ    │  │
+│  └─────────────┘  └─────────────┘  └─────────────┘  └──────────┘  │
+└───────┬───────────────────┬────────────────┬──────────────┬────────┘
+        │                   │                │              │
+        ▼                   ▼                ▼              ▼
+┌──────────────┐    ┌─────────────┐  ┌─────────────┐  ┌──────────┐
+│  Affiliate   │    │  Analytics  │  │    SEO      │  │  i18n    │
+│  Networks    │    │  Tracking   │  │    Meta     │  │  System  │
+└──────────────┘    └─────────────┘  └─────────────┘  └──────────┘
+        │                   │                │              │
+        └───────────────────┴────────────────┴──────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                         External Services                           │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌──────────┐  │
+│  │  Amazon     │  │   Google    │  │  Other      │  │ Analytics│  │
+│  │  Affiliate  │  │  Analytics  │  │ Affiliates  │  │ Services │  │
+│  └─────────────┘  └─────────────┘  └─────────────┘  └──────────┘  │
+└─────────────────────────────────────────────────────────────────────┘
 ```
+
+## Component Architecture
+```
+src/
+├── components/               # UI Components
+│   ├── layout/              # Layout components
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   └── Navigation.astro
+│   ├── product/             # Product-related components
+│   │   ├── Card.astro
+│   │   ├── Gallery.astro
+│   │   └── Comparison.astro
+│   └── shared/              # Shared UI components
+│       ├── Button.astro
+│       └── Rating.astro
+├── data/                    # Data management
+│   ├── products/
+│   ├── categories/
+│   └── affiliate/
+├── i18n/                    # Internationalization
+│   ├── translations/
+│   ├── urls.ts
+│   └── utils.ts
+├── utils/                   # Utility functions
+│   ├── affiliate.ts
+│   ├── price.ts
+│   └── seo.ts
+└── pages/                   # Route pages
+    └── [lang]/             # Language-specific routes
+```
+
+## Data Flow Architecture
+```
+Request → Language Middleware → Page Component
+     ↓
+Data Layer (products, categories)
+     ↓
+Component Rendering
+     ↓
+Affiliate Link Generation
+     ↓
+Analytics/Tracking Integration
+     ↓
+Static HTML Generation
+     ↓
+CDN Distribution
+```
+
 
 ## Suggested Improvements for Affiliate Website
 
