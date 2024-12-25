@@ -29,8 +29,20 @@ export const LANGUAGES = {
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
+// Navigation Types
+export interface NavSubItem {
+  href: string;
+  label: string;
+}
+
+export interface NavItem {
+  href: string;
+  label: string;
+  submenu?: NavSubItem[];
+}
+
 // Navigation
-export const NAV_ITEMS = [
+export const NAV_ITEMS: NavItem[] = [
   { href: '/beds', label: 'beds', submenu: [
     { href: '/beds/baby-beds', label: 'baby_beds' },
     { href: '/beds/kids-beds', label: 'kids_beds' },

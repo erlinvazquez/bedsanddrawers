@@ -39,11 +39,17 @@ const navigationStructuredData = {
         <div class="hidden lg:flex flex-grow justify-center space-x-6 xl:space-x-8 2xl:space-x-12">
           {NAV_ITEMS.map(item => (
             <div class="relative group" role="navigation">
-              <a
+                        <a
                 href={`/${currentLocale}${getLocalizedPath(item.href, currentLocale)}`}
-                class="text-sm xl:text-base font-medium text-gray-600 hover:text-gray-900 inline-flex items-center whitespace-nowrap"
+                class:list={[
+                  "text-sm xl:text-base font-medium inline-flex items-center whitespace-nowrap transition-all duration-300 ease-in-out",
+                  pathname.includes(getLocalizedPath(item.href, currentLocale))
+                    ? "text-purple-600 border-b-2 border-purple-600 font-semibold"
+                    : "text-gray-600 hover:text-gray-900"
+                ]}
                 itemprop="url"
                 aria-label={t(`nav.${item.label}`)}
+                aria-current={pathname.includes(getLocalizedPath(item.href, currentLocale)) ? 'page' : undefined}
                 {...(item.submenu && { 'aria-haspopup': 'true', 'aria-expanded': 'false' })}
               >
                 <span itemprop="name">{t(`nav.${item.label}`)}</span>
@@ -145,7 +151,7 @@ const navigationStructuredData = {
             </a>
             {item.submenu && (
               <div class="bg-gray-50" role="menu" aria-label={t(`nav.${item.label}Submenu`)}>
-                {item.submenu.map(subitem => (
+                {(item.submenu as any[]).map(subitem => (
                   <a
                     href={`/${currentLocale}${getLocalizedPath(subitem.href, currentLocale)}`}
                     class="block px-8 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
