@@ -1,0 +1,140 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import type { Category, Subcategory } from '../../../types';
+import type { Locale } from '../../../consts';
+import { getTranslations } from '../../../i18n/translations';
+import { useTranslations } from '../../../i18n/utils';
+import ProductGrid from '../../../components/ProductGrid.astro';
+import CategoryHero from '../../../components/CategoryHero.astro';
+import RelatedCategories from '../../../components/RelatedCategories.astro';
+import { LOCALES } from '../../../consts';
+import { categories, getCategoryBySlug, getSubcategoryBySlug } from '../../../data/categories';
+import { getLocalizedSlug, getCategoryFromSlug } from '../../../i18n/routing';
+import { ensureTrailingSlash } from '../../../utils/url';
+
+interface Props {
+  locale: Locale;
+  category: Category;
+  subcategory: Subcategory;
+  originalCategorySlug: string;
+  originalSubcategorySlug: string;
+}
+
+export function getStaticPaths() {
+  return LOCALES.flatMap((lang) => 
+    categories.flatMap((category) => 
+      category.subcategories.map((subcategory) => {
+        const localizedCategorySlug = getLocalizedSlug(lang, category.slug);
+        const localizedSubcategorySlug = getLocalizedSlug(lang, subcategory.slug);
+        
+        return {
+          params: {
+            lang,
+            category: localizedCategorySlug,
+            subcategory: localizedSubcategorySlug
+          },
+          props: {
+            locale: lang,
+            category,
+            subcategory,
+            originalCategorySlug: category.slug,
+            originalSubcategorySlug: subcategory.slug
+          }
+        };
+      })
+    )
+  );
+}
+
+const { lang, category: categorySlug, subcategory: subcategorySlug } = Astro.params;
+const { locale, category, subcategory, originalCategorySlug, originalSubcategorySlug } = Astro.props;
+const currentLocale = locale as Locale;
+
+const t = useTranslations(currentLocale);
+const translations = getTranslations(currentLocale);
+
+// Redirect to category page if subcategory is invalid
+if (!category || !subcategory) {
+  return Astro.redirect(ensureTrailingSlash(`/${currentLocale}/${getLocalizedSlug(currentLocale, originalCategorySlug || '')}`));
+}
+
+// Redirect to home if category is invalid
+if (!originalCategorySlug) {
+  return Astro.redirect(ensureTrailingSlash(`/${currentLocale}`));
+}
+
+// Transform subcategory items into the format expected by ProductGrid
+const products = (subcategory.items || []).map(item => ({
+  name: item.name,
+  slug: ensureTrailingSlash(`/${currentLocale}/${getLocalizedSlug(currentLocale, category.slug)}/${getLocalizedSlug(currentLocale, subcategory.slug)}/${item.slug}`),
+  description: item.description || '',
+  image: item.image || subcategory.image,
+  count: item.count || 0
+}));
+
+// Log for debugging
+console.log('Handling subcategory request:', {
+  categorySlug,
+  subcategorySlug,
+  category: category?.id,
+  subcategory: subcategory?.id,
+  items: subcategory?.items,
+  productsCount: products.length
+});
+
+const breadcrumbs = [
+  { name: t('home'), href: `/${currentLocale}/` },
+  { name: category.name, href: `/${currentLocale}/${getLocalizedSlug(currentLocale, category.slug)}/` },
+  { name: subcategory.name, href: `/${currentLocale}/${getLocalizedSlug(currentLocale, category.slug)}/${getLocalizedSlug(currentLocale, subcategory.slug)}/` }
+];
+
+const relatedSubcategories = category.subcategories.filter(sub => sub.slug !== subcategory.slug);
+
+const pageTitle = `${t(`categories.${category.slug}`)} - ${subcategory.name} | ${translations.meta.defaultTitle}`;
+const pageDescription = subcategory.metaDescription;
+
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  locale={currentLocale}
+>
+  <main>
+    <CategoryHero 
+      title={t(`subcategories.${subcategory.id}`)}
+      description={subcategory.description}
+      image={subcategory.image}
+      breadcrumbs={breadcrumbs}
+    />
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="space-y-16">
+        <section>
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">
+            {t('common.products')}
+          </h2>
+          {products.length > 0 ? (
+            <ProductGrid products={products} />
+          ) : (
+            <p class="text-gray-500 text-center py-8">
+              {t('common.noProducts')}
+            </p>
+          )}
+        </section>
+
+        {relatedSubcategories.length > 0 && (
+          <RelatedCategories 
+            categories={relatedSubcategories
+              .map(sub => ({
+                ...sub,
+                slug: ensureTrailingSlash(`/${currentLocale}/${getLocalizedSlug(currentLocale, category.slug)}/${getLocalizedSlug(currentLocale, sub.slug)}`)
+              }))}
+            title={t('common.relatedSubcategories')}
+            locale={currentLocale}
+          />
+        )}
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,9 +1,66 @@
 ---
 import { LANGUAGES } from '../consts';
 import { getLocaleFromUrl } from '../i18n/utils';
+import { URL_SEGMENTS } from '../i18n/urls';
 
 const { pathname } = Astro.url;
 const currentLocale = getLocaleFromUrl(pathname);
+
+// Get the current path segments
+const pathSegments = pathname.split('/').filter(Boolean);
+const [_, currentCategory, currentSubcategory] = pathSegments;
+
+// Function to ensure trailing slash
+function ensureTrailingSlash(url: string): string {
+  return url.endsWith('/') ? url : `${url}/`;
+}
+
+// Function to get localized URL for a different language
+function getLocalizedUrl(targetLocale: string) {
+  let url: string;
+
+  if (pathSegments.length === 1) {
+    // If we're on the homepage, just change the language
+    url = `/${targetLocale}`;
+  } else if (currentCategory) {
+    // For category and subcategory pages, translate the slugs
+    // First, get the original slugs by looking up the current localized versions
+    const reverseSegments: { [key: string]: string } = {};
+    Object.entries(URL_SEGMENTS[currentLocale]).forEach(([original, localized]) => {
+      reverseSegments[localized] = original;
+    });
+
+    // Get original slugs
+    const originalCategorySlug = reverseSegments[currentCategory] || currentCategory;
+    const originalSubcategorySlug = currentSubcategory ? (reverseSegments[currentSubcategory] || currentSubcategory) : null;
+
+    // Get localized versions for the target language
+    const targetLocalizedCategorySlug = URL_SEGMENTS[targetLocale][originalCategorySlug] || originalCategorySlug;
+    
+    if (originalSubcategorySlug) {
+      const targetLocalizedSubcategorySlug = URL_SEGMENTS[targetLocale][originalSubcategorySlug] || originalSubcategorySlug;
+      url = `/${targetLocale}/${targetLocalizedCategorySlug}/${targetLocalizedSubcategorySlug}`;
+    } else {
+      url = `/${targetLocale}/${targetLocalizedCategorySlug}`;
+    }
+  } else {
+    // For any other pages, keep the rest of the path
+    url = `/${targetLocale}${pathname.replace(/^\/[^/]+/, '')}`;
+  }
+
+  // Ensure trailing slash
+  return ensureTrailingSlash(url);
+}
+
+// Log for debugging
+console.log('Language Picker Debug:', {
+  pathname,
+  pathSegments,
+  currentLocale,
+  currentCategory,
+  currentSubcategory,
+  exampleUrl: getLocalizedUrl('es')
+});
 ---
 
 <div 
@@ -38,7 +95,7 @@ const currentLocale = getLocaleFromUrl(pathname);
     <div class="py-1" role="none">
       {Object.entries(LANGUAGES).map(([locale, { name }]) => (
         <a
-          href={`/${locale}${pathname.replace(/^\/[^/]+/, '')}`}
+          href={getLocalizedUrl(locale)}
           class={`
             block px-4 py-2 text-sm
             ${currentLocale === locale ? 'bg-gray-100 text-gray-900' : 'text-gray-700 hover:bg-gray-50'}

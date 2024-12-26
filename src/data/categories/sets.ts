@@ -2,7 +2,7 @@ import type { Category } from './types';
 
 export const setsCategory: Category = {
   id: 'sets',
-  name: 'Product Sets',
+  name: 'Furniture Sets',
   slug: 'sets',
   description: 'Complete furniture solutions and matching sets',
   metaTitle: 'Furniture Sets & Collections | Coordinated Room Solutions',
@@ -11,38 +11,48 @@ export const setsCategory: Category = {
   subcategories: [
     {
       id: 'bedroom-sets',
-      name: 'Bedroom Sets',
+      name: 'Complete Bedroom Sets',
       slug: 'bedroom-sets',
       description: 'Complete bedroom furniture solutions',
       count: 20,
       image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
       items: [
-        { name: 'Beds with Matching Dressers', slug: 'bed-dresser-sets' },
-        { name: 'Complete Bedroom Sets', slug: 'complete-bedroom-sets' },
-        { name: 'Bunk Bed Sets with Storage', slug: 'bunk-bed-storage-sets' },
-        { name: 'Daybed Sets', slug: 'daybed-sets' }
+        { name: 'Master Bedroom Sets', slug: 'master-bedroom-sets' },
+        { name: 'Guest Room Sets', slug: 'guest-room-sets' },
+        { name: 'Teen Room Sets', slug: 'teen-room-sets' }
       ],
-      metaTitle: 'Bedroom Sets | Complete Bedroom Solutions',
-      metaDescription: 'Shop our complete bedroom furniture sets. Find matching dressers, daybeds, and more.'
+      metaTitle: 'Complete Bedroom Sets | Coordinated Bedroom Solutions',
+      metaDescription: 'Shop our complete bedroom furniture sets. Find perfectly coordinated pieces for a cohesive bedroom design.'
     },
     {
-      id: 'accessories',
-      name: 'Related Products',
-      slug: 'accessories',
-      description: 'Essential bedroom accessories and storage',
-      count: 25,
+      id: 'nursery-sets',
+      name: 'Nursery Collections',
+      slug: 'nursery-sets',
+      description: 'Complete nursery furniture collections',
+      count: 15,
+      image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af',
+      items: [
+        { name: 'Complete Nursery Sets', slug: 'complete-nursery-sets' },
+        { name: 'Mini Nursery Sets', slug: 'mini-nursery-sets' },
+        { name: 'Convertible Nursery Sets', slug: 'convertible-nursery-sets' }
+      ],
+      metaTitle: 'Nursery Furniture Sets | Complete Baby Room Solutions',
+      metaDescription: 'Discover our nursery furniture collections. From complete sets to convertible solutions for your growing baby.'
+    },
+    {
+      id: 'storage-sets',
+      name: 'Storage Solution Sets',
+      slug: 'storage-sets',
+      description: 'Coordinated storage solutions for every room',
+      count: 12,
       image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
       items: [
-        { name: 'Mattresses', slug: 'mattresses' },
-        { name: 'Bed Frames', slug: 'bed-frames' },
-        { name: 'Headboards', slug: 'headboards' },
-        { name: 'Under-Bed Storage', slug: 'under-bed-storage' },
-        { name: 'Nightstands', slug: 'nightstands' },
-        { name: 'Closet Organizers', slug: 'closet-organizers' },
-        { name: 'Shelves and Cabinets', slug: 'shelves-cabinets' }
+        { name: 'Bedroom Storage Sets', slug: 'bedroom-storage-sets' },
+        { name: 'Wardrobe Systems', slug: 'wardrobe-systems' },
+        { name: 'Modular Storage Sets', slug: 'modular-storage-sets' }
       ],
-      metaTitle: 'Related Products | Essential Bedroom Accessories',
-      metaDescription: 'Shop our essential bedroom accessories and storage. Find mattresses, headboards, and more.'
+      metaTitle: 'Storage Solution Sets | Coordinated Storage Systems',
+      metaDescription: 'Shop our coordinated storage solution sets. Find perfectly matched storage pieces for organized living.'
     }
   ]
 };

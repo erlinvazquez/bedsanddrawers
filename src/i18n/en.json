@@ -21,13 +21,12 @@
     "by_room": "Room Collections",
     "baby_rooms": "Nursery & Baby Rooms",
     "kids_rooms": "Children's Bedrooms",
-    "bedrooms": "Master Bedrooms",
+    "bedrooms": "Bedrooms",
     "studio_apartments": "Studio & Small Spaces",
-    "styles_materials": "Design & Materials",
-    "wooden_furniture": "Premium Wood Collection",
-    "upholstered_furniture": "Upholstered Elegance",
-    "metal_frame_furniture": "Modern Metal Designs",
-    "eco_friendly_furniture": "Sustainable Collection",
+    "sets": "Furniture Sets",
+    "bedroom_sets": "Complete Bedroom Sets",
+    "nursery_sets": "Nursery Collections",
+    "storage_sets": "Storage Solutions Sets",
     "buying_guides": "Buying Guides",
     "tips": "Tips"
   },
@@ -36,7 +35,9 @@
     "description": "Tips to help you make the best furniture choices for your home"
   },
   "common": {
-    "categories": "Our Collections",
+    "categories": "Explore Our Catalog",
+    "subcategories": "Browse Categories",
+    "relatedCategories": "Related Collections",
     "productComparison": "Compare Products",
     "viewDetails": "View Details",
     "learnMore": "Learn More",
@@ -47,7 +48,7 @@
   "categories": {
     "beds": "Beds",
     "drawers": "Storage",
-    "by_room": "Rooms",
-    "styles_materials": "Styles"
+    "by_room": "By Room",
+    "sets": "Sets"
   }
 }

@@ -7,8 +7,7 @@ export const URL_SEGMENTS = {
     beds: 'beds',
     drawers: 'drawers',
     'by-room': 'by-room',
-    'styles-materials': 'styles-materials',
-    accessories: 'accessories',
+    sets: 'sets',
     
     // Subcategories - Beds
     'baby-beds': 'baby-beds',
@@ -28,28 +27,79 @@ export const URL_SEGMENTS = {
     // Subcategories - By Room
     'baby-rooms': 'baby-rooms',
     'kids-rooms': 'kids-rooms',
-    'master-bedrooms': 'master-bedrooms',
-    'guest-rooms': 'guest-rooms',
+    'bedrooms': 'bedrooms',
+    'studio-apartments': 'studio-apartments',
     
-    // Subcategories - Styles & Materials
-    wooden: 'wooden',
-    metal: 'metal',
-    upholstered: 'upholstered',
-    modern: 'modern',
-    classic: 'classic',
-    rustic: 'rustic'
+    // Subcategories - Sets
+    'bedroom-sets': 'bedroom-sets',
+    'nursery-sets': 'nursery-sets',
+    'storage-sets': 'storage-sets',
+
+    // Product slugs - Beds
+    'convertible-cribs': 'convertible-cribs',
+    'mini-cribs': 'mini-cribs',
+    'bassinets': 'bassinets',
+    'portable-baby-beds': 'portable-baby-beds',
+    'toddler-beds': 'toddler-beds',
+    'bunk-beds': 'bunk-beds',
+    'loft-beds': 'loft-beds',
+    'kids-storage-beds': 'kids-storage-beds',
+    'wooden-single-beds': 'wooden-single-beds',
+    'metal-single-beds': 'metal-single-beds',
+    'upholstered-single-beds': 'upholstered-single-beds',
+    'compact-double-beds': 'compact-double-beds',
+    'platform-double-beds': 'platform-double-beds',
+    'vintage-double-beds': 'vintage-double-beds',
+    'luxury-king-beds': 'luxury-king-beds',
+    'affordable-queen-beds': 'affordable-queen-beds',
+    'adjustable-beds': 'adjustable-beds',
+    'futons': 'futons',
+    'pull-out-beds': 'pull-out-beds',
+    'sectional-sofa-beds': 'sectional-sofa-beds',
+    'murphy-beds': 'murphy-beds',
+    'trundle-beds': 'trundle-beds',
+    'foldable-beds': 'foldable-beds',
+
+    // Product slugs - Drawers
+    'wooden-chest-drawers': 'wooden-chest-drawers',
+    'metal-frame-drawers': 'metal-frame-drawers',
+    'minimalist-drawers': 'minimalist-drawers',
+    'slide-out-drawers': 'slide-out-drawers',
+    'under-bed-bins': 'under-bed-bins',
+    'storage-nightstands': 'storage-nightstands',
+    'compact-nightstands': 'compact-nightstands',
+    'stackable-drawers': 'stackable-drawers',
+    'configurable-drawers': 'configurable-drawers',
+
+    // Product slugs - By Room
+    'nursery-set': 'nursery-set',
+    'changing-station': 'changing-station',
+    'kids-bedroom-sets': 'kids-bedroom-sets',
+    'kids-study-furniture': 'kids-study-furniture',
+    'master-bedroom-sets': 'master-bedroom-sets',
+    'guest-room-sets': 'guest-room-sets',
+    'studio-living-sets': 'studio-living-sets',
+    'space-saving-solutions': 'space-saving-solutions',
+
+    // Product slugs - Sets
+    'complete-nursery-sets': 'complete-nursery-sets',
+    'mini-nursery-sets': 'mini-nursery-sets',
+    'convertible-nursery-sets': 'convertible-nursery-sets',
+    'bedroom-storage-sets': 'bedroom-storage-sets',
+    'wardrobe-systems': 'wardrobe-systems',
+    'modular-storage-sets': 'modular-storage-sets',
+    'teen-room-sets': 'teen-room-sets'
   },
   es: {
     // Categories
     beds: 'camas',
     drawers: 'cajones',
     'by-room': 'por-habitacion',
-    'styles-materials': 'estilos-materiales',
-    accessories: 'accesorios',
+    sets: 'conjuntos',
     
     // Subcategories - Beds
-    'baby-beds': 'cunas',
-    'kids-beds': 'camas-infantiles',
+    'baby-beds': 'camas-bebe',
+    'kids-beds': 'camas-ninos',
     'single-beds': 'camas-individuales',
     'double-beds': 'camas-dobles',
     'king-queen-beds': 'camas-king-queen',
@@ -57,24 +107,76 @@ export const URL_SEGMENTS = {
     'space-saving-beds': 'camas-ahorro-espacio',
     
     // Subcategories - Drawers
-    'chest-of-drawers': 'comodas',
+    'chest-of-drawers': 'comoda-cajones',
     'under-bed-storage': 'almacenamiento-bajo-cama',
     'bedside-tables': 'mesas-noche',
     'modular-drawers': 'cajones-modulares',
     
     // Subcategories - By Room
-    'baby-rooms': 'cuartos-bebe',
-    'kids-rooms': 'cuartos-ninos',
-    'master-bedrooms': 'dormitorios-principales',
-    'guest-rooms': 'cuartos-huespedes',
+    'baby-rooms': 'habitaciones-bebe',
+    'kids-rooms': 'habitaciones-ninos',
+    'bedrooms': 'dormitorios',
+    'studio-apartments': 'apartamentos-estudio',
     
-    // Subcategories - Styles & Materials
-    wooden: 'madera',
-    metal: 'metal',
-    upholstered: 'tapizado',
-    modern: 'moderno',
-    classic: 'clasico',
-    rustic: 'rustico'
+    // Subcategories - Sets
+    'bedroom-sets': 'conjuntos-dormitorio',
+    'nursery-sets': 'conjuntos-guarderia',
+    'storage-sets': 'conjuntos-almacenamiento',
+
+    // Product slugs - Beds
+    'convertible-cribs': 'cunas-convertibles',
+    'mini-cribs': 'mini-cunas',
+    'bassinets': 'moisés',
+    'portable-baby-beds': 'camas-bebe-portatiles',
+    'toddler-beds': 'camas-infantiles',
+    'bunk-beds': 'literas',
+    'loft-beds': 'camas-altas',
+    'kids-storage-beds': 'camas-ninos-almacenamiento',
+    'wooden-single-beds': 'camas-individuales-madera',
+    'metal-single-beds': 'camas-individuales-metal',
+    'upholstered-single-beds': 'camas-individuales-tapizadas',
+    'compact-double-beds': 'camas-dobles-compactas',
+    'platform-double-beds': 'camas-dobles-plataforma',
+    'vintage-double-beds': 'camas-dobles-vintage',
+    'luxury-king-beds': 'camas-king-lujo',
+    'affordable-queen-beds': 'camas-queen-economicas',
+    'adjustable-beds': 'camas-ajustables',
+    'futons': 'futones',
+    'pull-out-beds': 'camas-plegables',
+    'sectional-sofa-beds': 'sofa-camas-seccionales',
+    'murphy-beds': 'camas-murphy',
+    'trundle-beds': 'camas-nido',
+    'foldable-beds': 'camas-plegables',
+
+    // Product slugs - Drawers
+    'wooden-chest-drawers': 'comoda-cajones-madera',
+    'metal-frame-drawers': 'cajones-marco-metal',
+    'minimalist-drawers': 'cajones-minimalistas',
+    'slide-out-drawers': 'cajones-deslizantes',
+    'under-bed-bins': 'cajas-bajo-cama',
+    'storage-nightstands': 'mesas-noche-almacenamiento',
+    'compact-nightstands': 'mesas-noche-compactas',
+    'stackable-drawers': 'cajones-apilables',
+    'configurable-drawers': 'cajones-configurables',
+
+    // Product slugs - By Room
+    'nursery-set': 'conjunto-guarderia',
+    'changing-station': 'estacion-cambio',
+    'kids-bedroom-sets': 'conjuntos-dormitorio-ninos',
+    'kids-study-furniture': 'muebles-estudio-ninos',
+    'master-bedroom-sets': 'conjuntos-dormitorio-principal',
+    'guest-room-sets': 'conjuntos-habitacion-huespedes',
+    'studio-living-sets': 'conjuntos-estudio',
+    'space-saving-solutions': 'soluciones-ahorro-espacio',
+
+    // Product slugs - Sets
+    'complete-nursery-sets': 'conjuntos-guarderia-completos',
+    'mini-nursery-sets': 'conjuntos-guarderia-mini',
+    'convertible-nursery-sets': 'conjuntos-guarderia-convertibles',
+    'bedroom-storage-sets': 'conjuntos-almacenamiento-dormitorio',
+    'wardrobe-systems': 'sistemas-armario',
+    'modular-storage-sets': 'conjuntos-almacenamiento-modular',
+    'teen-room-sets': 'conjuntos-habitacion-adolescentes'
   }
 } as const;
 

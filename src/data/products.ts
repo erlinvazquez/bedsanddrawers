@@ -1,28 +1,14 @@
-export interface Product {
-  id: string;
-  title: string;
-  price: number;
-  image: string;
-  category: string;
-  rating: number;
-  affiliateLink: string;
-  description: string;
-  features: string[];
-  specifications: {
-    dimensions: string;
-    material: string;
-    color: string;
-    weight: string;
-  };
-}
+import type { DetailedProduct } from '../types/product';
 
-export const products: Product[] = [
+export const products: DetailedProduct[] = [
   {
     id: "luxury-king-bed-1",
-    title: "Royal Comfort King Bed",
+    name: "Royal Comfort King Bed",
     price: 1299,
     image: "https://images.unsplash.com/photo-1505693314120-0d443867891c",
     category: "Luxury Beds",
+    subcategory: "King Beds",
+    slug: "royal-comfort-king-bed",
     rating: 4.8,
     affiliateLink: "https://example.com/affiliate/luxury-king-bed",
     description: "Experience ultimate comfort with our premium king-size bed featuring plush upholstery and elegant design.",
@@ -41,10 +27,12 @@ export const products: Product[] = [
   },
   {
     id: "modern-drawer-set-1",
-    title: "Modern Oak Drawer Set",
+    name: "Modern Oak Drawer Set",
     price: 899,
     image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2",
     category: "Designer Drawers",
+    subcategory: "Oak Drawer Sets",
+    slug: "modern-oak-drawer-set",
     rating: 4.7,
     affiliateLink: "https://example.com/affiliate/oak-drawer-set",
     description: "Sleek and spacious drawer set crafted from premium oak wood with soft-close mechanisms.",
@@ -63,10 +51,12 @@ export const products: Product[] = [
   },
   {
     id: "storage-bed-premium-1",
-    title: "Premium Storage Bed",
+    name: "Premium Storage Bed",
     price: 1499,
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
     category: "Storage Beds",
+    subcategory: "Premium Storage Beds",
+    slug: "premium-storage-bed",
     rating: 4.9,
     affiliateLink: "https://example.com/affiliate/storage-bed",
     description: "Maximize your space with this luxurious storage bed featuring hydraulic lift mechanism.",
@@ -85,10 +75,12 @@ export const products: Product[] = [
   },
   {
     id: "kids-bunk-bed-1",
-    title: "Adventure Kids Bunk Bed",
+    name: "Adventure Kids Bunk Bed",
     price: 899,
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
     category: "Kids Collection",
+    subcategory: "Bunk Beds",
+    slug: "adventure-kids-bunk-bed",
     rating: 4.8,
     affiliateLink: "https://example.com/affiliate/kids-bunk-bed",
     description: "Fun and safe bunk bed perfect for children, featuring built-in ladder and safety rails.",
@@ -107,10 +99,12 @@ export const products: Product[] = [
   },
   {
     id: "luxury-dresser-1",
-    title: "Elegant Mahogany Dresser",
+    name: "Elegant Mahogany Dresser",
     price: 1299,
     image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2",
     category: "Designer Drawers",
+    subcategory: "Mahogany Dressers",
+    slug: "elegant-mahogany-dresser",
     rating: 4.9,
     affiliateLink: "https://example.com/affiliate/mahogany-dresser",
     description: "Classic mahogany dresser with intricate detailing and ample storage space.",

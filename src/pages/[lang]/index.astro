@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.astro';
-import ShoppingGuide from '../../components/home/ShoppingGuide.astro';
 import ProductComparison from '../../components/ProductComparison.astro';
 import CategoryWidget from '../../components/CategoryWidget.astro';
 import TrendingProducts from '../../components/TrendingProducts.astro';
@@ -10,22 +9,21 @@ import FAQ from '../../components/FAQ.astro';
 import { categories } from '../../data/categories';
 import { mattressComparison } from '../../data/comparisons';
 import { homepageFAQ } from '../../data/faq';
-import { LOCALES, type Locale } from '../../consts';
+import type { Locale } from '../../consts';
 import { getTranslations } from '../../i18n/translations';
 import { useTranslations } from '../../i18n/utils';
+import { getIndexStaticPaths, getLocalizedSlug } from '../../i18n/routing';
 
-export function getStaticPaths() {
-  return LOCALES.map((lang) => ({
-    params: { lang },
-  }));
-}
+export { getIndexStaticPaths as getStaticPaths };
 
 const { lang } = Astro.params;
-const currentLocale = lang as Locale;
+const { locale } = Astro.props;
+const currentLocale = locale as Locale;
 const t = useTranslations(currentLocale);
 const translations = getTranslations(currentLocale);
 
 const featuredCategories = categories.slice(0, 3);
+
 ---
 
 <Layout 
@@ -40,14 +38,19 @@ const featuredCategories = categories.slice(0, 3);
         <section>
           <h2 class="text-3xl font-bold text-gray-900 mb-8">{t('common.categories')}</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredCategories.map((category) => (
-              <CategoryWidget 
-                title={t(`categories.${category.id}`)}
-                description={category.description}
-                image={category.image}
-                href={`/${currentLocale}/${category.slug}`}
-              />
-            ))}
+            {featuredCategories.map((category) => {
+              // Get localized slug for the category
+              const localizedSlug = getLocalizedSlug(currentLocale, category.slug);
+              
+              return (
+                <CategoryWidget 
+                  title={t(`categories.${category.id}`)}
+                  description={category.description}
+                  image={category.image}
+                  href={`/${currentLocale}/${localizedSlug}`}
+                />
+              );
+            })}
           </div>
         </section>
 

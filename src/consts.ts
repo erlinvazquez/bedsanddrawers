@@ -64,11 +64,10 @@ export const NAV_ITEMS: NavItem[] = [
     { href: '/by-room/bedrooms', label: 'bedrooms' },
     { href: '/by-room/studio-apartments', label: 'studio_apartments' }
   ]},
-  { href: '/styles-materials', label: 'styles_materials', submenu: [
-    { href: '/styles-materials/wooden', label: 'wooden_furniture' },
-    { href: '/styles-materials/upholstered', label: 'upholstered_furniture' },
-    { href: '/styles-materials/metal', label: 'metal_frame_furniture' },
-    { href: '/styles-materials/eco-friendly', label: 'eco_friendly_furniture' }
+  { href: '/sets', label: 'sets', submenu: [
+    { href: '/sets/bedroom-sets', label: 'bedroom_sets' },
+    { href: '/sets/nursery-sets', label: 'nursery_sets' },
+    { href: '/sets/storage-sets', label: 'storage_sets' }
   ]},
   { href: '/tips', label: 'tips' },
   { href: '/buying-guides', label: 'buying_guides' }

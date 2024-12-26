@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import type { Category } from '../../types';
+import type { Locale } from '../../consts';
+import { getTranslations } from '../../i18n/translations';
+import { useTranslations } from '../../i18n/utils';
+import ProductGrid from '../../components/ProductGrid.astro';
+import CategoryHero from '../../components/CategoryHero.astro';
+import RelatedCategories from '../../components/RelatedCategories.astro';
+import { LOCALES } from '../../consts';
+import { categories, getCategoryBySlug } from '../../data/categories';
+import { getLocalizedSlug, getCategoryFromSlug } from '../../i18n/routing';
+import { ensureTrailingSlash } from '../../utils/url';
+
+interface Props {
+  locale: Locale;
+  category: Category;
+  originalSlug: string;
+}
+
+export function getStaticPaths() {
+  return LOCALES.flatMap((lang) => 
+    categories.map((category) => {
+      const localizedSlug = getLocalizedSlug(lang, category.slug);
+      
+      return {
+        params: { 
+          lang,
+          category: localizedSlug 
+        },
+        props: { 
+          locale: lang,
+          category,
+          originalSlug: category.slug
+        }
+      };
+    })
+  );
+}
+
+const { lang, category: categorySlug } = Astro.params;
+const { locale, category, originalSlug } = Astro.props;
+const currentLocale = locale as Locale;
+
+const t = useTranslations(currentLocale);
+const translations = getTranslations(currentLocale);
+
+// Redirect to home if category is invalid
+if (!category || !originalSlug) {
+  return Astro.redirect(ensureTrailingSlash(`/${currentLocale}`));
+}
+
+// Get related categories (excluding current category)
+const relatedCategories = categories
+  .filter(c => c.slug !== originalSlug)
+  .slice(0, 3);
+
+// Log for debugging
+console.log('Handling category request:', {
+  categorySlug,
+  category: category?.id
+});
+
+---
+
+<Layout 
+  title={`${t(`categories.${category.id}`)} | ${translations.meta.defaultTitle}`}
+  description={category.metaDescription}
+  locale={currentLocale}
+>
+  <main>
+    <CategoryHero 
+      title={t(`categories.${category.id}`)}
+      description={category.description}
+      image={category.image}
+    />
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="space-y-16">
+        {category.subcategories && (
+          <section>
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">
+              {t('common.subcategories')}
+            </h2>
+            <ProductGrid products={category.subcategories.map(sub => ({
+              ...sub,
+              slug: ensureTrailingSlash(`${category.slug}/${sub.slug}`) // Create nested URL with trailing slash
+            }))} />
+          </section>
+        )}
+        
+        <RelatedCategories 
+          categories={relatedCategories.map(cat => ({
+            ...cat,
+            slug: ensureTrailingSlash(cat.slug) // Add trailing slash
+          }))}
+          title={t('common.relatedCategories')}
+          locale={currentLocale}
+        />
+      </div>
+    </div>
+  </main>
+</Layout>

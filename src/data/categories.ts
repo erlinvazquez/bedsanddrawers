@@ -1,28 +1,4 @@
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  metaTitle: string;
-  metaDescription: string;
-  image: string;
-  subcategories: Subcategory[];
-  buyingGuide?: BuyingGuide;
-}
-
-export interface BuyingGuide {
-  title: string;
-  content: string;
-}
-
-export interface Subcategory {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  count: number;
-  image: string;
-}
+import type { Category, BuyingGuide } from '../types/category';
 
 export const categories: Category[] = [
   {
@@ -40,7 +16,11 @@ export const categories: Category[] = [
         slug: 'baby-beds',
         description: 'Safe and comfortable baby beds designed for your little one\'s peaceful sleep.',
         count: 15,
-        image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af'
+        image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af',
+        items: [
+          { name: 'Crib Bed', slug: 'crib-bed' },
+          { name: 'Convertible Baby Bed', slug: 'convertible-baby-bed' }
+        ]
       },
       {
         id: 'kids-beds',
@@ -48,7 +28,11 @@ export const categories: Category[] = [
         slug: 'kids-beds',
         description: 'Fun and functional beds perfect for growing children.',
         count: 20,
-        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85'
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
+        items: [
+          { name: 'Twin Bed', slug: 'twin-bed' },
+          { name: 'Bunk Bed', slug: 'bunk-bed' }
+        ]
       },
       {
         id: 'single-beds',
@@ -56,7 +40,11 @@ export const categories: Category[] = [
         slug: 'single-beds',
         description: 'Comfortable single beds ideal for guest rooms or compact spaces.',
         count: 25,
-        image: 'https://images.unsplash.com/photo-1505693414898-9f1463e9f7a4'
+        image: 'https://images.unsplash.com/photo-1505693414898-9f1463e9f7a4',
+        items: [
+          { name: 'Basic Single Bed', slug: 'basic-single-bed' },
+          { name: 'Storage Single Bed', slug: 'storage-single-bed' }
+        ]
       },
       {
         id: 'double-beds',
@@ -64,7 +52,11 @@ export const categories: Category[] = [
         slug: 'double-beds',
         description: 'Spacious double beds combining style and comfort.',
         count: 30,
-        image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c'
+        image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c',
+        items: [
+          { name: 'Classic Double Bed', slug: 'classic-double-bed' },
+          { name: 'Modern Double Bed', slug: 'modern-double-bed' }
+        ]
       }
     ],
     buyingGuide: undefined
@@ -84,7 +76,11 @@ export const categories: Category[] = [
         slug: 'chest-of-drawers',
         description: 'Classic and modern chest of drawers for ample storage.',
         count: 18,
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
+        items: [
+          { name: '3-Drawer Chest', slug: '3-drawer-chest' },
+          { name: '5-Drawer Chest', slug: '5-drawer-chest' }
+        ]
       },
       {
         id: 'bedside-tables',
@@ -92,7 +88,11 @@ export const categories: Category[] = [
         slug: 'bedside-tables',
         description: 'Stylish bedside tables with practical storage options.',
         count: 12,
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
+        items: [
+          { name: 'Simple Bedside Table', slug: 'simple-bedside-table' },
+          { name: 'Storage Bedside Table', slug: 'storage-bedside-table' }
+        ]
       },
       {
         id: 'modular-drawers',
@@ -100,7 +100,11 @@ export const categories: Category[] = [
         slug: 'modular-drawers',
         description: 'Customizable drawer systems for flexible storage solutions.',
         count: 15,
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
+        items: [
+          { name: '2-Drawer Module', slug: '2-drawer-module' },
+          { name: '4-Drawer Module', slug: '4-drawer-module' }
+        ]
       }
     ],
     buyingGuide: undefined
@@ -120,7 +124,11 @@ export const categories: Category[] = [
         slug: 'sofas',
         description: 'Comfortable and stylish sofas for your living room.',
         count: 25,
-        image: 'https://images.unsplash.com/photo-1560448075-bb485b067938'
+        image: 'https://images.unsplash.com/photo-1560448075-bb485b067938',
+        items: [
+          { name: '2-Seater Sofa', slug: '2-seater-sofa' },
+          { name: '3-Seater Sofa', slug: '3-seater-sofa' }
+        ]
       },
       {
         id: 'coffee-tables',
@@ -128,7 +136,11 @@ export const categories: Category[] = [
         slug: 'coffee-tables',
         description: 'Elegant coffee tables to complete your living room setup.',
         count: 20,
-        image: 'https://images.unsplash.com/photo-1560448075-bb485b067938'
+        image: 'https://images.unsplash.com/photo-1560448075-bb485b067938',
+        items: [
+          { name: 'Round Coffee Table', slug: 'round-coffee-table' },
+          { name: 'Rectangular Coffee Table', slug: 'rectangular-coffee-table' }
+        ]
       },
       {
         id: 'tv-units',
@@ -136,7 +148,11 @@ export const categories: Category[] = [
         slug: 'tv-units',
         description: 'Modern TV units with storage solutions.',
         count: 15,
-        image: 'https://images.unsplash.com/photo-1560448075-bb485b067938'
+        image: 'https://images.unsplash.com/photo-1560448075-bb485b067938',
+        items: [
+          { name: 'Wall-Mounted TV Unit', slug: 'wall-mounted-tv-unit' },
+          { name: 'Floor-Standing TV Unit', slug: 'floor-standing-tv-unit' }
+        ]
       }
     ],
     buyingGuide: undefined
@@ -156,7 +172,11 @@ export const categories: Category[] = [
         slug: 'modern-sets',
         description: 'Contemporary bedroom sets with clean lines and modern aesthetics.',
         count: 10,
-        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85'
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
+        items: [
+          { name: '3-Piece Modern Set', slug: '3-piece-modern-set' },
+          { name: '5-Piece Modern Set', slug: '5-piece-modern-set' }
+        ]
       },
       {
         id: 'classic-sets',
@@ -164,7 +184,11 @@ export const categories: Category[] = [
         slug: 'classic-sets',
         description: 'Timeless bedroom sets with traditional design elements.',
         count: 8,
-        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85'
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
+        items: [
+          { name: '3-Piece Classic Set', slug: '3-piece-classic-set' },
+          { name: '5-Piece Classic Set', slug: '5-piece-classic-set' }
+        ]
       }
     ],
     buyingGuide: undefined
@@ -184,7 +208,11 @@ export const categories: Category[] = [
         slug: 'wardrobes',
         description: 'Spacious wardrobes with customizable interiors.',
         count: 15,
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
+        items: [
+          { name: 'Single Wardrobe', slug: 'single-wardrobe' },
+          { name: 'Double Wardrobe', slug: 'double-wardrobe' }
+        ]
       },
       {
         id: 'shelving',
@@ -192,7 +220,11 @@ export const categories: Category[] = [
         slug: 'shelving',
         description: 'Versatile shelving systems for books and displays.',
         count: 20,
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
+        items: [
+          { name: 'Fixed Shelving Unit', slug: 'fixed-shelving-unit' },
+          { name: 'Adjustable Shelving Unit', slug: 'adjustable-shelving-unit' }
+        ]
       },
       {
         id: 'storage-boxes',
@@ -200,7 +232,11 @@ export const categories: Category[] = [
         slug: 'storage-boxes',
         description: 'Decorative storage boxes for organized living.',
         count: 25,
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2'
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2',
+        items: [
+          { name: 'Small Storage Box', slug: 'small-storage-box' },
+          { name: 'Large Storage Box', slug: 'large-storage-box' }
+        ]
       }
     ],
     buyingGuide: undefined

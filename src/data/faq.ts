@@ -1,4 +1,6 @@
-export const homepageFAQ = [
+import type { FAQItem } from '../types/faq';
+
+export const homepageFAQ: FAQItem[] = [
   {
     question: "What types of beds do you offer?",
     answer: "Our extensive bed collection includes luxury king and queen beds, space-saving storage beds, convertible sofa beds, bunk beds for kids, and elegant platform beds. Each category features multiple styles, from contemporary minimalist designs to classic traditional pieces, ensuring you'll find the perfect match for your bedroom."
