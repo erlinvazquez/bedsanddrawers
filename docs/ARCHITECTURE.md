@@ -155,7 +155,7 @@ src/
 
 ## Development Guidelines
 
-### Adding New Categories
+### Adding New Categories and Subcategories
 
 1. **Update Categories Data**
    - Navigate to `src/data/categories/`
@@ -177,6 +177,8 @@ src/
            description: "Subcategory Description",
            count: 0,
            image: "https://path-to-subcategory-image",
+           metaTitle: "SEO Title for Subcategory",
+           metaDescription: "SEO Description for Subcategory",
            items: [
              { name: "Item Name", slug: "item-slug" }
            ]
@@ -185,12 +187,54 @@ src/
      }
      ```
 
-2. **Add Category Translations**
+2. **Add Category/Subcategory Translations**
    - Update translations in `src/i18n/en.json` and `src/i18n/es.json`
-   - Add category name and description in all supported languages
+   - Add category and subcategory names and descriptions in all supported languages
 
 3. **Update URL Mappings**
-   - Add new category routes in `src/i18n/urls.ts`
+   - Add new category/subcategory routes in `src/i18n/urls.ts`
+
+4. **Asset Management**
+   - Upload category/subcategory images to `/public/images/categories/`
+   - Ensure image naming follows the convention: `[category-slug]-[subcategory-slug].webp`
+   - Optimize images for web performance (recommended size: 800x600px)
+
+5. **Type Definitions**
+   - Verify types in `src/types/subcategory.ts` and `src/types/categories.ts`
+   - If adding new properties:
+     ```typescript
+     // src/types/subcategory.ts
+     export interface Subcategory extends BaseItem {
+       metaTitle?: string;
+       metaDescription?: string;
+       items: SubcategoryItem[];
+       products?: Product[];
+       count: number;
+     }
+     ```
+
+6. **SEO Optimization**
+   - Add required meta titles and descriptions for both category and subcategory
+   - Follow SEO best practices:
+     - Meta titles: 50-60 characters
+     - Meta descriptions: 150-160 characters
+     - Include relevant keywords
+     - Ensure unique content for each subcategory
+
+7. **Testing Implementation**
+   - Verify UI rendering:
+     - Check subcategory appears in parent category page
+     - Validate subcategory page loads correctly
+     - Test responsive design on mobile devices
+   - Test navigation:
+     - Confirm all links work in both languages
+     - Verify breadcrumb navigation
+   - Validate SEO elements:
+     - Check meta tags are properly rendered
+     - Verify structured data
+   - Performance testing:
+     - Check image loading optimization
+     - Verify page load times
 
 ### Adding New Products
 
@@ -438,7 +482,15 @@ Source Files                Build Process              Output
                                                       ▼
 ┌─────────────────┐     ┌───────────────┐     ┌────────────────┐
 │    Response     │ ◄── │   Components  │ ◄── │   Data Layer   │
-└─────────────────┘     └───────────────┘     └────────────────┘
+└──────┬───────┘     └───────────────┘     └────────────────┘
+       │                     │                     │
+       └─────────────────────┼─────────────────────┘
+                            │
+                            ▼
+┌──────────────┐     ┌───────────────┐     ┌────────────────┐
+│    i18n      │ ──► │    Final      │ ──► │   Static       │
+│  Translation │     │    Render     │     │   Generation   │
+└──────┬───────┘     └───────────────┘     └────────────────┘
 ```
 
 ## Key Features
@@ -455,8 +507,9 @@ Source Files                Build Process              Output
 3. **Content Management**
    - Blog system
    - Shopping guides
-   - Tips and advice
-   - FAQ system
+   - Product reviews
+   - Category descriptions
+   - Collections schemas
 
 4. **User Experience**
    - Responsive design
