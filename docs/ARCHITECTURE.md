@@ -418,14 +418,7 @@ src/
        │
        ▼
 ┌──────────────┐     ┌───────────────┐     ┌────────────────┐
-│   Dynamic    │ ◄── │    Route      │ ◄── │    Page        │
-│   Params     │     │  Resolution   │     │   Component    │
-└──────┬───────┘     └───────────────┘     └────────────────┘
-       │                     │                     │
-       ▼                     ▼                     ▼
-┌──────────────┐     ┌───────────────┐     ┌────────────────┐
-│   Content    │     │    Shared     │     │     Page       │
-│ Components   │     │  Components   │     │   Components   │
+│    Response     │ ◄── │   Components  │ ◄── │   Data Layer   │
 └──────┬───────┘     └───────────────┘     └────────────────┘
        │                     │                     │
        └─────────────────────┼─────────────────────┘
@@ -588,3 +581,133 @@ Source Files                Build Process              Output
    - Looks up category/subcategory data
    - Validates existence and relationships
 4. **Route Parameters**: Assembles validated parameters for page generation
+
+
+## Contentful CMS Integration
+
+This section outlines the necessary changes to integrate Contentful CMS for managing categories, subcategories, products, languages, and pages.
+
+### Content Model Changes
+- Move from static content in `/src/content/` and `/src/data/` to Contentful content models for:
+  - Categories and subcategories
+  - Products
+  - Blog posts
+  - Buying guides
+  - FAQ pages
+  - Translations/Languages
+
+### New Integration Layer
+Create a new directory `/src/cms/` to handle Contentful integration:
+
+```typescript
+src/cms/
+├── client.ts          # Contentful client configuration
+├── types/            # Content model types
+├── mappers/          # Data transformation layers
+└── queries/          # GraphQL/REST queries for Contentful
+```
+
+### Implementation Steps
+
+#### 1. Environment Setup
+```env
+CONTENTFUL_SPACE_ID=your_space_id
+CONTENTFUL_ACCESS_TOKEN=your_access_token
+CONTENTFUL_PREVIEW_TOKEN=your_preview_token
+CONTENTFUL_ENVIRONMENT=master
+```
+
+#### 2. Client Configuration
+```typescript
+// src/cms/client.ts
+import { createClient } from 'contentful';
+
+export const contentfulClient = createClient({
+  space: import.meta.env.CONTENTFUL_SPACE_ID,
+  accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN,
+  environment: import.meta.env.CONTENTFUL_ENVIRONMENT
+});
+```
+
+#### 3. Content Type Definitions
+```typescript
+// src/cms/types/index.ts
+export interface Category {
+  title: Record<string, string>;
+  slug: Record<string, string>;
+  description: Record<string, string>;
+  subcategories: Subcategory[];
+}
+
+export interface Product {
+  title: Record<string, string>;
+  slug: Record<string, string>;
+  price: number;
+  category: Category;
+  images: Asset[];
+}
+```
+
+#### 4. Data Fetching
+```typescript
+// src/cms/queries/categories.ts
+export async function getCategories(locale: string) {
+  const entries = await contentfulClient.getEntries({
+    content_type: 'category',
+    locale,
+    include: 2
+  });
+  return entries.items;
+}
+```
+
+### Required Changes
+
+#### Data Fetching Changes
+- Replace static data imports with Contentful API calls
+- Implement caching strategy for better performance
+- Add preview mode for content editors
+- Update build process to fetch content during build time
+
+#### i18n System Updates
+- Modify `/src/i18n/` to fetch translations from Contentful
+- Update routing system to handle dynamic slugs from CMS
+- Implement preview URLs for different locales
+
+#### Component Updates
+- Update components to handle rich text content from Contentful
+- Add image optimization for Contentful's Asset API
+- Implement preview components for draft content
+
+#### Build Process Changes
+- Add environment variables for Contentful credentials
+- Implement build hooks for content updates
+- Add revalidation strategy for incremental static regeneration
+
+### Benefits
+
+#### Content Management
+- Non-technical users can manage content
+- Preview changes before publishing
+- Structured content validation
+
+#### Localization
+- Centralized translation management
+- Better workflow for content editors
+- Automatic language fallbacks
+
+#### Performance
+- CDN-delivered assets
+- Optimized image delivery
+- Incremental content updates
+
+#### Development
+- Type-safe content
+- Better content modeling
+- Separation of concerns
+
+### Performance Considerations
+- Implement efficient caching strategies
+- Use Contentful's GraphQL API for optimized queries
+- Set up Incremental Static Regeneration
+- Use Contentful's Image API for optimized assets
