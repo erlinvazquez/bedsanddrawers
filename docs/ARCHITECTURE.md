@@ -14,40 +14,70 @@ The project uses a component-based architecture with TypeScript, Tailwind CSS, a
 ## Project Structure
 
 ### 1. Pages (`/src/pages`)
-- Dynamic routes with language support (`[lang]`)
-- Product pages
-- Blog system
-- Category pages
-- Buying guides
+- Dynamic language routes (`[lang]`)
+  - Home page (`index.astro`)
+  - Product pages (`product/[...slug].astro`)
+  - Blog system (`blog/[...slug].astro`)
+  - Buying guides (`buying-guides/[...slug].astro`)
+  - Tips and advice (`tips/[...slug].astro`)
+  - FAQ pages (`faq/[category].astro`)
+  - About page (`about.astro`)
+  - 404 error page (`404.astro`)
+- RSS feed generation (`rss.xml.js`)
+
 
 ### 2. Components (`/src/components`)
 #### Layout Components
 - `Layout.astro`: Main layout wrapper
-- `Navigation.astro`: Site navigation
+- `Navigation.astro`: Site navigation with mobile menu
+- `Header.astro`: Site header with navigation
 - `Footer.astro`: Site footer
 - `BaseHead.astro`: Common head elements
+- `HeaderLink.astro`: Navigation link component
+- `Logo.astro`: Site logo component
+- `LanguagePicker.astro`: Language selection component
 
 #### Product Components
 - `ProductCard.astro`: Product display card
-- `ProductGallery.astro`: Product image gallery
-- `ProductInfo.astro`: Product details
 - `ProductComparison.astro`: Product comparison tool
+- `TrendingProducts.astro`: Trending products showcase
+- `FeaturedProducts.astro`: Featured products section
 
 #### Category Components
 - `CategoryCard.astro`: Category display card
 - `CategoryHero.astro`: Category header section
 - `CategoryWidget.astro`: Category preview widget
+- `SubcategoryGrid.astro`: Grid display for subcategories
+
+#### Blog Components
+- `BlogPostCard.astro`: Blog post preview card
+- `FormattedDate.astro`: Date formatting component
 
 #### UI Components
-- `Button.astro`: Reusable button component
+- `Hero.astro`: Hero section component
+- `SearchBar.astro`: Search functionality
 - `StarRating.astro`: Rating display
 - `FAQ.astro`: FAQ accordion
 
 ### 3. Internationalization (`/src/i18n`)
-- Translation files (`en.ts`, `es.ts`)
+- Translation files
+  - JSON-based translations (`en.json`, `es.json`)
+  - Component-specific translations
+    - `hero.ts`: Hero section translations
+    - `guides.ts`: Buying guides translations
+    - `tips.ts`: Tips and advice translations
 - URL management (`urls.ts`)
+- Language preferences (`preferences.ts`)
+- Translation types (`types.ts`)
+  - Navigation translations
+  - Meta translations
+  - Common UI translations
+  - Category translations
+  - Tips translations
 - Language utilities (`utils.ts`)
-- Translation types and interfaces
+  - Language detection
+  - URL generation
+  - Translation helpers
 
 ### 4. Data Layer (`/src/data`)
 - Product data
@@ -55,38 +85,61 @@ The project uses a component-based architecture with TypeScript, Tailwind CSS, a
 - Comparison data
 - FAQ data
 - Shopping guides
+- Blog content
 
-### 5. Types (`/src/types`)
+### 5. Content (`/src/content`)
+- Blog posts
+- Shopping guides
+- Product reviews
+- Category descriptions
+- Collections schemas
+
+### 6. Middleware (`/src/middleware`)
+- Language detection and routing (`language.ts`)
+- Request handling
+- Response transformation
+
+### 7. Types (`/src/types`)
 - Product interfaces
 - Category interfaces
+- Blog post types
 - Common type definitions
+- Component props types
 
-### 6. Utilities (`/src/utils`)
+### 8. Utilities (`/src/utils`)
 - Price formatting
 - Affiliate link generation
 - Navigation helpers
 - SEO utilities
 - Routing utilities
+- Date formatting
 
 ## Key Features
 
 ### 1. Multilingual Support
 - Language detection and routing
-- Translated content and URLs
-- Language switcher component
+- Component-specific translations
+- JSON and TypeScript based translation system
+- Language preferences management
+- SEO-friendly URL structure
 - Default language fallback
+- RSS feed localization
 
 ### 2. Product Management
 - Product categorization
-- Product comparison
-- Product galleries
-- Related products
+- Product comparison system
+- Trending products showcase
+- Featured products
+- Product reviews
+- Shopping guides integration
 
 ### 3. Content Management
 - Blog system with MDX
-- Buying guides
+- Shopping guides
 - FAQ sections
 - Category descriptions
+- Product collections
+- Dynamic content routing
 
 ### 4. SEO Optimization
 - Meta tags management
