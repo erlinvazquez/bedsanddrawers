@@ -37,6 +37,20 @@ src/
     └── url.ts          # URL manipulation utilities
 ```
 
+### Key Files
+
+#### Routing System
+- **i18n/routing.ts**: Handles internationalized routing logic including:
+  - Static path generation for all localized routes
+  - Category and subcategory slug resolution
+  - URL segment localization and original slug retrieval
+  - Route parameter typing and validation
+
+- **utils/routing.ts**: Provides utility functions for path manipulation:
+  - Parsing localized paths into category/subcategory segments
+  - Building localized paths from category and subcategory components
+  - Integration with the URL localization system
+
 ### 1. Pages (`/src/pages`)
 - Dynamic language routes (`[lang]`)
   - Home page (`index.astro`)
@@ -304,10 +318,18 @@ src/
 │  │  │├─index      │   │    │  │├─Card      │  │   ││Layout  ││   │
 │  │  │├─product    │   │    │  │├─Grid      │  │   │└────────┘│   │
 │  │  │├─blog       │   │    │  │└─Compare   │  │   │┌────────┐│   │
-│  │  │└─guides     │   │    │  │Category/    │  │   ││Header  ││   │
-│  │  └─────────────┘   │    │  │├─Card      │  │   │└────────┘│   │
-│  └─────────────────────┘    │  │└─Hero      │  │   └──────────┘   │
-│                             └───────────────────┘                   │
+│  │  │├─guides     │   │    │  │Category/    │  │   ││Header  ││   │
+│  │  │├─[category]/│   │    │  │├─Card      │  │   │└────────┘│   │
+│  │  ││├─index     │   │    │  │└─Hero      │  │   └──────────┘   │
+│  │  ││├─[subcategory]/││    │  │Subcategory/ │  │                   │
+│  │  │││├─index     │││    │  │├─Grid      │  │                   │
+│  │  │││└──────────┘││    │  │└──────────┘  │                   │
+│  │  │└─────────────┘│    │  └─────────────┘  │                   │
+│  │  └─────────────┘   │    └─────────────────┘                   │
+│  └─────────────────────┘    ┌─────────────────┐                   │
+│                             │    Shared       │                   │
+│                             │  Components     │                   │
+│                             └─────────────────┘                   │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
@@ -348,27 +370,27 @@ src/
 ┌──────────────┐     ┌───────────────┐     ┌────────────────┐
 │ HTTP Request │ ──► │   Language    │ ──► │  Astro Router  │
 │              │     │   Detection   │     │                │
-└──────────────┘     └───────────────┘     └────────────────┘
-                                                   │
-                                                   ▼
+└──────┬───────┘     └───────────────┘     └────────────────┘
+       │
+       ▼
 ┌──────────────┐     ┌───────────────┐     ┌────────────────┐
-│   Product    │ ◄── │    Data       │ ◄── │    Page        │
-│   Loading    │     │    Layer      │     │   Component    │
-└──────────────┘     └───────────────┘     └────────────────┘
+│   Dynamic    │ ◄── │    Route      │ ◄── │    Page        │
+│   Params     │     │  Resolution   │     │   Component    │
+└──────┬───────┘     └───────────────┘     └────────────────┘
        │                     │                     │
        ▼                     ▼                     ▼
 ┌──────────────┐     ┌───────────────┐     ┌────────────────┐
-│   Product    │     │   Category    │     │    Content     │
+│   Content    │     │    Shared     │     │     Page       │
 │ Components   │     │  Components   │     │   Components   │
-└──────────────┘     └───────────────┘     └────────────────┘
+└──────┬───────┘     └───────────────┘     └────────────────┘
        │                     │                     │
        └─────────────────────┼─────────────────────┘
                             │
                             ▼
 ┌──────────────┐     ┌───────────────┐     ┌────────────────┐
-│    i18n      │ ──► │    Final      │ ──► │   Static      │
+│    i18n      │ ──► │    Final      │ ──► │   Static       │
 │  Translation │     │    Render     │     │   Generation   │
-└──────────────┘     └───────────────┘     └────────────────┘
+└──────┬───────┘     └───────────────┘     └────────────────┘
 ```
 
 ### 3. Component Dependency Graph
@@ -448,3 +470,68 @@ Source Files                Build Process              Output
 - Efficient data structures
 - Component-based architecture for code reuse
 - Type safety with TypeScript
+
+## Dynamic Route Resolution
+┌──────────────┐
+│ Browser      │
+│ Request      │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ Astro Router │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐     ┌─────────────────┐
+│ URL Pattern  │ ──► │ [lang]/[category]│
+│ Match        │     │ /[subcategory]   │
+└──────┬───────┘     └─────────────────┘
+       │
+       ▼
+┌──────────────┐     ┌─────────────────┐
+│ Language     │ ──► │ Locale          │
+│ Resolution   │     │ Validation      │
+└──────┬───────┘     └─────────────────┘
+       │
+       ▼
+┌──────────────────────────────────────┐
+│      Dynamic Route Resolution        │
+├──────────────────────────────────────┤
+│                                      │
+│  ┌─────────────┐   ┌─────────────┐  │
+│  │    Slug     │ ► │  Category   │  │
+│  │Localization │   │   Lookup    │  │
+│  └─────────────┘   └──────┬──────┘  │
+│         ▲                 │          │
+│         │                 ▼          │
+│  ┌─────────────┐   ┌─────────────┐  │
+│  │    i18n     │   │ Subcategory │  │
+│  │   System    │   │   Lookup    │  │
+│  └─────────────┘   └──────┬──────┘  │
+│                           │          │
+└───────────────────────────┼──────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────┐
+│         Route Parameters             │
+│  ┌────────────┐  ┌───────────────┐  │
+│  │  Locale    │  │   Category    │  │
+│  │  Params    │  │    Data       │  │
+│  └────────────┘  └───────────────┘  │
+└──────────────────────────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│         Page Generation             │
+└──────────────────────────────────────┘
+
+### Dynamic Route Resolution Flow
+1. **URL Pattern Match**: Identifies dynamic route patterns like `[lang]/[category]/[subcategory]`
+2. **Language Resolution**: Validates and sets the current locale
+3. **Category/Subcategory Resolution**:
+   - Extracts localized slugs from URL
+   - Converts localized slugs to original slugs
+   - Looks up category/subcategory data
+   - Validates existence and relationships
+4. **Route Parameters**: Assembles validated parameters for page generation
