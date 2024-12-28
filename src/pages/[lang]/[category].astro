@@ -5,7 +5,7 @@ import type { Locale } from '../../consts';
 import { getTranslations } from '../../i18n/translations';
 import { useTranslations } from '../../i18n/utils';
 import ProductGrid from '../../components/ProductGrid.astro';
-import CategoryHero from '../../components/CategoryHero.astro';
+import CategoryHeader from '../../components/CategoryHeader.astro';
 import RelatedCategories from '../../components/RelatedCategories.astro';
 import { LOCALES } from '../../consts';
 import { categories, getCategoryBySlug } from '../../data/categories';
@@ -69,10 +69,9 @@ console.log('Handling category request:', {
   locale={currentLocale}
 >
   <main>
-    <CategoryHero 
+    <CategoryHeader 
       title={t(`categories.${category.id}`)}
       description={category.description}
-      image={category.image}
     />
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
