@@ -22,6 +22,11 @@
   }
 }
 
+/* Alpine.js Styles */
+[x-cloak] {
+  display: none !important;
+}
+
 /* Swiper Styles */
 .swiper-pagination-bullet {
   @apply bg-purple-600;

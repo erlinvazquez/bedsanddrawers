@@ -1,0 +1,32 @@
+---
+---
+<div class="mt-6 flex justify-between items-center">
+  <button 
+    x-show="step > 1"
+    @click="step--"
+    class="text-sm font-medium text-purple-600 hover:text-purple-800 flex items-center gap-1"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back
+  </button>
+  <div class="flex gap-2">
+    <span 
+      :class="step >= 1 ? 'bg-purple-600 scale-110' : 'bg-purple-200'"
+      class="w-2 h-2 rounded-full transform transition-all duration-200"
+    ></span>
+    <span 
+      :class="step >= 2 ? 'bg-purple-600 scale-110' : 'bg-purple-200'"
+      class="w-2 h-2 rounded-full transform transition-all duration-200"
+    ></span>
+    <span 
+      :class="step >= 3 ? 'bg-purple-600 scale-110' : 'bg-purple-200'"
+      class="w-2 h-2 rounded-full transform transition-all duration-200"
+    ></span>
+    <span 
+      :class="step >= 4 ? 'bg-purple-600 scale-110' : 'bg-purple-200'"
+      class="w-2 h-2 rounded-full transform transition-all duration-200"
+    ></span>
+  </div>
+</div>

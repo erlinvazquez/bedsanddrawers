@@ -1,6 +1,5 @@
 ---
-import Button from '../ui/Button.astro';
-import { useTranslations } from '../../i18n/utils';
+import QuizCard from '../quiz/QuizCard.astro';
 import type { Locale } from '../../consts';
 
 interface Props {
@@ -9,47 +8,6 @@ interface Props {
 }
 
 const { currentLocale, exploreText } = Astro.props;
-const t = useTranslations(currentLocale);
 ---
 
-<div class="w-full max-w-md mx-auto sm:mx-0">
-  <div class="bg-white rounded-lg p-4 space-y-4">
-    <h3 class="text-xl font-bold">🏃 Let's go!</h3>
-    
-    <div class="space-y-4">
-      <input
-        type="email"
-        placeholder="Enter your email"
-        class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-      />
-      
-      <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
-        Get personalized recommendations
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <div class="mt-6 space-y-4 text-sm text-gray-300">
-    <div class="flex items-center gap-2">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-      </svg>
-      Thousands of verified products
-    </div>
-    <div class="flex items-center gap-2">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-      </svg>
-      5-minute comparison process
-    </div>
-    <div class="flex items-center gap-2">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-      </svg>
-      Expert recommendations within 1 hour
-    </div>
-  </div>
-</div>
+<QuizCard {currentLocale} />

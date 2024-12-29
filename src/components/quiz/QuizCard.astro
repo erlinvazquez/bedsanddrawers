@@ -1,0 +1,35 @@
+---
+import QuizHeader from './QuizHeader.astro';
+import QuizSteps from './QuizSteps.astro';
+import QuizProgress from './QuizProgress.astro';
+import type { Locale } from '../../consts';
+
+interface Props {
+  currentLocale: Locale;
+}
+
+const { currentLocale } = Astro.props;
+---
+
+<div class="w-full max-w-md mx-auto sm:mx-0">
+  <div 
+    x-data="{ 
+      step: 1,
+      preferences: {
+        size: '',
+        style: '',
+        budget: '',
+        storage: ''
+      },
+      get isComplete() {
+        return this.preferences.size && this.preferences.style && 
+               this.preferences.budget && this.preferences.storage && this.step === 5;
+      }
+    }"
+    class="bg-gradient-to-br from-white to-purple-50 rounded-lg p-6 shadow-lg border border-purple-100"
+  >
+    <QuizHeader />
+    <QuizSteps {currentLocale} />
+    <QuizProgress />
+  </div>
+</div>

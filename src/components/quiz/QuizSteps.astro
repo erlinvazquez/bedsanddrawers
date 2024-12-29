@@ -1,0 +1,106 @@
+---
+import type { Locale } from '../../consts';
+
+interface Props {
+  currentLocale: Locale;
+}
+
+const { currentLocale } = Astro.props;
+---
+
+<!-- Step 1: Room Size -->
+<div x-show.transition.in="step === 1" class="space-y-4">
+  <p class="text-gray-700 font-medium mb-3">What's your room size? 📏</p>
+  <div class="grid grid-cols-2 gap-3">
+    <button 
+      @click="preferences.size = 'small'; step = 2"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Small Room</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Under 120 sq ft</span>
+    </button>
+    <button 
+      @click="preferences.size = 'large'; step = 2"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Large Room</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Over 120 sq ft</span>
+    </button>
+  </div>
+</div>
+
+<!-- Step 2: Style -->
+<div x-show.transition.in="step === 2" x-cloak class="space-y-4">
+  <p class="text-gray-700 font-medium mb-3">What's your preferred style? 🎨</p>
+  <div class="grid grid-cols-2 gap-3">
+    <button 
+      @click="preferences.style = 'modern'; step = 3"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Modern</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Clean & minimal</span>
+    </button>
+    <button 
+      @click="preferences.style = 'classic'; step = 3"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Classic</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Timeless & elegant</span>
+    </button>
+  </div>
+</div>
+
+<!-- Step 3: Budget -->
+<div x-show.transition.in="step === 3" x-cloak class="space-y-4">
+  <p class="text-gray-700 font-medium mb-3">What's your budget range? 💰</p>
+  <div class="grid grid-cols-2 gap-3">
+    <button 
+      @click="preferences.budget = 'budget'; step = 4"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">$500-1500</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Budget-friendly</span>
+    </button>
+    <button 
+      @click="preferences.budget = 'premium'; step = 4"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">$1500+</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Premium quality</span>
+    </button>
+  </div>
+</div>
+
+<!-- Step 4: Storage -->
+<div x-show.transition.in="step === 4" x-cloak class="space-y-4">
+  <p class="text-gray-700 font-medium mb-3">Storage requirements? 📦</p>
+  <div class="grid grid-cols-2 gap-3">
+    <button 
+      @click="preferences.storage = 'minimal'; step = 5"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Basic</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Standard storage</span>
+    </button>
+    <button 
+      @click="preferences.storage = 'maximum'; step = 5"
+      class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+    >
+      <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Maximum</span>
+      <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Extra storage</span>
+    </button>
+  </div>
+</div>
+
+<!-- Results -->
+<div x-show.transition.in="step === 5 && isComplete" x-cloak class="mt-6">
+  <a
+    :href="`/${currentLocale}/recommendations?${new URLSearchParams(preferences)}`"
+    class="w-full bg-purple-600 text-white py-4 px-6 rounded-lg font-medium hover:bg-purple-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-purple-100"
+  >
+    <span>See Your Perfect Matches</span>
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+  </a>
+</div>
