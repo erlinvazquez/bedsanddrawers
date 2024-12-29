@@ -90,14 +90,14 @@ const { currentLocale } = Astro.props;
     <p class="text-gray-700 font-medium mb-3">Storage requirements? 📦</p>
     <div class="grid grid-cols-2 gap-3">
       <button 
-        @click="preferences.storage = 'minimal'; step = 5"
+        @click="preferences.storage = 'minimal'; step = 5; isComplete = true"
         class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
       >
         <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Basic</span>
         <span class="block text-sm text-purple-600 opacity-75 group-hover:opacity-100">Standard storage</span>
       </button>
       <button 
-        @click="preferences.storage = 'maximum'; step = 5"
+        @click="preferences.storage = 'maximum'; step = 5; isComplete = true"
         class="group p-4 bg-white border-2 border-purple-100 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
       >
         <span class="block text-lg font-medium text-gray-900 group-hover:text-purple-700">Maximum</span>
