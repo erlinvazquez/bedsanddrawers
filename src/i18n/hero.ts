@@ -1,7 +1,7 @@
 export const heroTranslations = {
   en: {
-    title: "Find tour perfect bed & drawer match",
-    description: "Compare prices and discover the best beds and drawers from top retailers. From budget-friendly to premium options, we help you make informed choices.",
+    title: "Find your perfect bed & drawer match",
+    description: "Get personalized recommendations in minutes. Compare prices and discover the best furniture from verified retailers worldwide.",
     bestDeals: "Best Deals",
     priceComparison: "Price Comparison",
     compareBeds: "Compare Beds",
@@ -13,7 +13,7 @@ export const heroTranslations = {
   },
   es: {
     title: "Encuentra tu cama y gavetero ideal",
-    description: "Compara precios y descubre las mejores camas y gaveteros de los principales minoristas. Desde opciones económicas hasta premium, te ayudamos a tomar decisiones informadas.",
+    description: "Obtén recomendaciones personalizadas en minutos. Compara precios y descubre los mejores muebles de minoristas verificados en todo el mundo.",
     bestDeals: "Mejores Ofertas",
     priceComparison: "Comparación de Precios",
     compareBeds: "Comparar Camas",
