@@ -50,10 +50,10 @@ const navigationStructuredData = {
                 itemprop="url"
                 aria-label={t(`nav.${item.label}`)}
                 aria-current={pathname.split('/').includes(getLocalizedPath(item.href, currentLocale).split('/')[1]) ? 'page' : undefined}
-                {...(item.submenu && { 'aria-haspopup': 'true', 'aria-expanded': 'false' })}
+                {...(item.subItems && { 'aria-haspopup': 'true', 'aria-expanded': 'false' })}
               >
                 <span itemprop="name">{t(`nav.${item.label}`)}</span>
-                {item.submenu && (
+                {item.subItems && (
                   <svg 
                     class="ml-1.5 h-4 w-4 xl:h-5 xl:w-5" 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -65,7 +65,7 @@ const navigationStructuredData = {
                   </svg>
                 )}
               </a>
-              {item.submenu && (
+              {item.subItems && (
                 <div 
                   class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"
                   role="menu"
@@ -73,7 +73,7 @@ const navigationStructuredData = {
                   aria-labelledby="nav-dropdown"
                 >
                   <div class="py-2">
-                    {item.submenu.map(subitem => (
+                    {item.subItems.map(subitem => (
                       <a
                         href={`/${currentLocale}${getLocalizedPath(subitem.href, currentLocale)}`}
                         class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
@@ -149,9 +149,9 @@ const navigationStructuredData = {
             >
               <span itemprop="name">{t(`nav.${item.label}`)}</span>
             </a>
-            {item.submenu && (
+            {item.subItems && (
               <div class="bg-gray-50" role="menu" aria-label={t(`nav.${item.label}Submenu`)}>
-                {(item.submenu as any[]).map(subitem => (
+                {(item.subItems as any[]).map(subitem => (
                   <a
                     href={`/${currentLocale}${getLocalizedPath(subitem.href, currentLocale)}`}
                     class="block px-8 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-900"

@@ -1,27 +1,4 @@
-export interface ShoppingGuide {
-  category: string;
-  factors: Array<{
-    name: string;
-    description: string;
-  }>;
-  brands: Array<{
-    name: string;
-    logo: string;
-    description: string;
-    rating: number;
-    reviewCount: number;
-    knownFor: string[];
-  }>;
-  priceRanges: Array<{
-    label: string;
-    min: number;
-    max?: number;
-  }>;
-  questions: Array<{
-    question: string;
-    answer: string;
-  }>;
-}
+import { ShoppingGuide } from '../../types/data/shopping-guides';
 
 export function getShoppingGuide(category: string): ShoppingGuide {
   // In a real application, this would fetch from a database or API

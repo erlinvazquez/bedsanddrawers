@@ -14,7 +14,7 @@ export const FACEBOOK_HANDLE = 'bdfurniture';
 export const INSTAGRAM_HANDLE = 'bdfurniture';
 
 // Internationalization
-export type Locale = 'en' | 'es';
+import { Locale } from './types/common/navigation';
 
 export const LOCALES: Locale[] = ['en', 'es'];
 
@@ -29,21 +29,12 @@ export const LANGUAGES = {
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
-// Navigation Types
-export interface NavSubItem {
-  href: string;
-  label: string;
-}
-
-export interface NavItem {
-  href: string;
-  label: string;
-  submenu?: NavSubItem[];
-}
+// Navigation
+import type { NavItem } from './types/common/navigation';
 
 // Navigation
 export const NAV_ITEMS: NavItem[] = [
-  { href: '/beds', label: 'beds', submenu: [
+  { href: '/beds', label: 'beds', subItems: [
     { href: '/beds/baby-beds', label: 'baby_beds' },
     { href: '/beds/kids-beds', label: 'kids_beds' },
     { href: '/beds/single-beds', label: 'single_beds' },
@@ -52,19 +43,19 @@ export const NAV_ITEMS: NavItem[] = [
     { href: '/beds/sofa-beds', label: 'sofa_beds' },
     { href: '/beds/space-saving-beds', label: 'space_saving_beds' }
   ]},
-  { href: '/drawers', label: 'drawers', submenu: [
+  { href: '/drawers', label: 'drawers', subItems: [
     { href: '/drawers/chest-of-drawers', label: 'chest_of_drawers' },
     { href: '/drawers/under-bed-storage', label: 'under_bed_storage' },
     { href: '/drawers/bedside-tables', label: 'bedside_tables' },
     { href: '/drawers/modular-drawers', label: 'modular_drawers' }
   ]},
-  { href: '/by-room', label: 'by_room', submenu: [
+  { href: '/by-room', label: 'by_room', subItems: [
     { href: '/by-room/baby-rooms', label: 'baby_rooms' },
     { href: '/by-room/kids-rooms', label: 'kids_rooms' },
     { href: '/by-room/bedrooms', label: 'bedrooms' },
     { href: '/by-room/studio-apartments', label: 'studio_apartments' }
   ]},
-  { href: '/sets', label: 'sets', submenu: [
+  { href: '/sets', label: 'sets', subItems: [
     { href: '/sets/bedroom-sets', label: 'bedroom_sets' },
     { href: '/sets/nursery-sets', label: 'nursery_sets' },
     { href: '/sets/storage-sets', label: 'storage_sets' }
