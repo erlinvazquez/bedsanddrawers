@@ -19,5 +19,10 @@ export default {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /hover:.*/
+    }
+  ],
   plugins: [],
 }
