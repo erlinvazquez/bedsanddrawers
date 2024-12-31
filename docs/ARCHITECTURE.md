@@ -83,27 +83,44 @@ src/
 
 #### Category Components
 - `CategoryCard.astro`: Category display card
-- `CategoryHero.astro`: Category header section
+- `CategoryHeader.astro`: Category header section
 - `CategoryWidget.astro`: Category preview widget
+- `CategoryShowcase.astro`: Featured category showcase
 - `SubcategoryGrid.astro`: Grid display for subcategories
 - `RelatedCategories.astro`: Related categories section
 
 #### Content Components
-- `BlogPostCard.astro`: Blog post preview card
-- `FormattedDate.astro`: Date formatting component
 - `FAQ.astro`: FAQ accordion component
-
-#### UI Components
-- `Hero.astro`: Hero section component
+- `FormattedDate.astro`: Date formatting component
 - `SearchBar.astro`: Search functionality
-- `StarRating.astro`: Rating display
+- `StarRating.astro`: Rating display component
 
 #### Specialized Component Directories
-- `/hero`: Hero section variants
+- `/hero`: Hero section components and variants
+  - `HeroTitle.astro`: Hero title component
+  - `HeroActions.astro`: Hero action buttons
 - `/home`: Homepage-specific components
 - `/product`: Product-specific components
+  - Product details
+  - Product reviews
+  - Product specifications
+  - Product images
+- `/quiz`: Product recommendation quiz components
+  - Quiz questions
+  - Quiz results
+  - Quiz navigation
+  - Quiz summary
 - `/shopping-guide`: Shopping guide components
+  - Guide sections
+  - Guide navigation
+  - Guide highlights
+  - Guide comparisons
+  - Guide recommendations
 - `/tips`: Tips and advice components
+  - Tip cards
+  - Tip categories
+  - Tip search
+  - Related tips
 - `/ui`: Reusable UI components
 
 ### 3. Data Layer (`/src/data`)
@@ -412,7 +429,7 @@ src/
 ### 2. Data Flow Architecture
 ```
 ┌──────────────┐     ┌───────────────┐     ┌────────────────┐
-│ HTTP Request │ ──► │   Language    │ ──► │  Astro Router  │
+│  Client Request │ ──► │   Language    │ ──► │  Astro Router  │
 │              │     │   Detection   │     │                │
 └──────┬───────┘     └───────────────┘     └────────────────┘
        │
