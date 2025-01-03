@@ -27,14 +27,14 @@ const { title, items } = Astro.props;
     <div class="space-y-6" itemscope itemtype="https://schema.org/FAQPage">
       {items.map((item, index) => (
         <div 
-          class="border-b border-gray-200 pb-6" 
+          class="border-b border-gray-200 pb-6 cursor-pointer" 
           itemscope 
           itemprop="mainEntity" 
           itemtype="https://schema.org/Question"
+          @click={`toggle(${index})`}
         >
-          <button
+          <div
             class="flex justify-between items-center w-full text-left"
-            @click={`toggle(${index})`}
             :aria-expanded={`activeIndex === ${index}`}
           >
             <h3 class="text-lg font-medium text-gray-900" itemprop="name">
@@ -52,7 +52,7 @@ const { title, items } = Astro.props;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </span>
-          </button>
+          </div>
           <div
             class="relative overflow-hidden"
             x-show={`activeIndex === ${index}`}
