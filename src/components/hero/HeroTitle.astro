@@ -25,32 +25,34 @@ const { title, description, stats } = Astro.props;
   </div>
   
   <div class="space-y-4">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-      find <span class="inline-flex items-center mx-2">🔍</span> your perfect
-      <div class="inline-flex items-center mx-2">bed <span class="text-yellow-400">⚡</span> drawer</div>
-      match.
+    <h1 
+      class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
+      aria-label="Find your perfect bed and drawer in minutes">
+      <span class="block">Find your perfect</span>
+      <span class="block mt-2">bed and drawer</span>
+      <span class="block mt-2">in  <span class="text-yellow-400">⚡</span>  minutes.</span>
     </h1>
     
-    <h2 class="text-lg sm:text-xl text-gray-300">
+    <p class="text-lg sm:text-xl text-gray-300 max-w-prose" aria-label="Product description">
       {description}
-    </h2>
+    </p>
     
-    <ul class="mt-6 space-y-4 text-gray-300 text-base sm:text-lg">
-      <li class="flex items-start sm:items-center gap-3">
-        <span class="text-primary mt-1 sm:mt-0">✓</span>
-        <span class="flex-1"><span class="underline">Thousands</span> of verified retailers</span>
+    <ul class="mt-8 space-y-4 text-gray-300 text-base sm:text-lg" role="list" aria-label="Key features">
+      <li class="flex items-center gap-3">
+        <span class="text-primary flex-shrink-0" aria-hidden="true">✓</span>
+        <span><span class="underline decoration-2">Thousands</span> of verified retailers</span>
       </li>
-      <li class="flex items-start sm:items-center gap-3">
-        <span class="text-primary mt-1 sm:mt-0">✓</span>
-        <span class="flex-1">5 minute <span class="underline">recommendation</span> process</span>
+      <li class="flex items-center gap-3">
+        <span class="text-primary flex-shrink-0" aria-hidden="true">✓</span>
+        <span>5 minute <span class="underline decoration-2">recommendation</span> process</span>
       </li>
-      <li class="flex items-start sm:items-center gap-3">
-        <span class="text-primary mt-1 sm:mt-0">✓</span>
-        <span class="flex-1"><span class="underline">Responses</span> within 1st hour</span>
+      <li class="flex items-center gap-3">
+        <span class="text-primary flex-shrink-0" aria-hidden="true">✓</span>
+        <span><span class="underline decoration-2">Responses</span> within 1st hour</span>
       </li>
-      <li class="flex items-start sm:items-center gap-3">
-        <span class="text-primary mt-1 sm:mt-0">✓</span>
-        <span class="flex-1"><span class="underline">Secure</span> and safe browsing</span>
+      <li class="flex items-center gap-3">
+        <span class="text-primary flex-shrink-0" aria-hidden="true">✓</span>
+        <span><span class="underline decoration-2">Secure</span> and safe browsing</span>
       </li>
     </ul>
   </div>
